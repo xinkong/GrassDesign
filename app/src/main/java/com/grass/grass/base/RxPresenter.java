@@ -1,6 +1,8 @@
 package com.grass.grass.base;
 
 
+import android.content.Context;
+
 import com.grass.grass.utils.http.HttpUrlManager;
 
 import javax.inject.Inject;
@@ -20,6 +22,7 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
 
     protected T mView;
     protected CompositeDisposable mCompositeDisposable;
+    public Context mContext;
 
     protected void unSubscribe() {
         if (mCompositeDisposable != null) {
@@ -34,13 +37,6 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
         mCompositeDisposable.add(subscription);
     }
 
-//    protected <U> void addRxBusSubscribe(Class<U> eventType, Consumer<U> act) {
-//        if (mCompositeDisposable == null) {
-//            mCompositeDisposable = new CompositeDisposable();
-//        }
-//        mCompositeDisposable.add(RxBus.getDefault().toDefaultFlowable(eventType, act));
-//    }
-
     @Override
     public void attachView(T view) {
         this.mView = view;
@@ -50,5 +46,10 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
     public void detachView() {
         this.mView = null;
         unSubscribe();
+    }
+
+    @Override
+    public void injectContext(Context context) {
+        mContext = context;
     }
 }

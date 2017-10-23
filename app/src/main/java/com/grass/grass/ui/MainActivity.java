@@ -19,6 +19,11 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
 
     @Override
+    public String getThisPageTitle() {
+        return "首页";
+    }
+
+    @Override
     public int getLayoutID() {
         return R.layout.activity_main;
     }
@@ -26,12 +31,12 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     @Override
     public void onActivityStart() {
         mPresenter.getData("zhangsan","pwd");
-        mTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext(),LoginActivity.class));
-            }
-        });
+        mTextView.setOnClickListener(view -> startActivity(new Intent(mContext(),LoginActivity.class)));
+    }
+
+    @Override
+    public boolean isCanBack() {
+        return false;
     }
 
     @Override

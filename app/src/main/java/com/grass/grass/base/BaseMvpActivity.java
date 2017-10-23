@@ -1,8 +1,6 @@
 package com.grass.grass.base;
 
-import android.util.Log;
 import android.widget.Toast;
-
 
 import com.grass.grass.app.BaseApplication;
 import com.grass.grass.di.component.ActivityComponent;
@@ -34,7 +32,9 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     @Override
     public void onViewCreated() {
         initInject();
+
         if (mPresenter != null) {
+            mPresenter.injectContext(this);
             mPresenter.attachView(this);
         }
     }
@@ -49,13 +49,11 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
 
     @Override
     public void showErrorMsg(String msg) {
-        Log.e("tag",msg);
         Toast.makeText(mContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void stateError() {
-
     }
 
     @Override

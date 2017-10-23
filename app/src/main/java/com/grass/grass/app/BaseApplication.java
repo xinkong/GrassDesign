@@ -9,10 +9,15 @@ import android.view.Display;
 import android.view.WindowManager;
 
 
+import com.grass.grass.BuildConfig;
 import com.grass.grass.di.component.AppComponent;
 import com.grass.grass.di.component.DaggerAppComponent;
 import com.grass.grass.di.module.AppModule;
 import com.grass.grass.di.module.HttpModule;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +55,21 @@ public class BaseApplication extends Application {
         //初始化屏幕宽高
         getScreenSize();
 
+        initLogger();
 
+
+    }
+
+    private void initLogger() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .tag("GrassDesign")
+                .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy){
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
     }
 
     public void addActivity(Activity act) {

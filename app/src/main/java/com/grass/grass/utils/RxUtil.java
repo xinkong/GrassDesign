@@ -4,12 +4,15 @@ package com.grass.grass.utils;
 import com.grass.grass.entity.BaseEntity;
 import com.grass.grass.utils.http.ApiException;
 
+import org.reactivestreams.Publisher;
+
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -37,6 +40,7 @@ public class RxUtil {
 
     /**
      * 统一返回结果处理
+     *
      * @param <T>
      * @return
      */
@@ -47,7 +51,7 @@ public class RxUtil {
                 return httpResponseFlowable.flatMap(new Function<BaseEntity<T>, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(BaseEntity<T> response) {
-                        if(response.returnCode == 0) {
+                        if (response.returnCode == 0) {
                             return createData(response.data);
                         } else {
                             return Flowable.error(new ApiException(response.returnMessage));
@@ -65,7 +69,7 @@ public class RxUtil {
                 return httpResponseFlowable.flatMap(new Function<BaseEntity<T>, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(BaseEntity<T> response) {
-                        if(response.returnCode == 0) {
+                        if (response.returnCode == 0) {
                             return createData(response.data);
                         } else {
                             return Flowable.error(new ApiException(response.returnMessage));
@@ -78,6 +82,7 @@ public class RxUtil {
 
     /**
      * 生成Flowable
+     *
      * @param <T>
      * @return
      */

@@ -15,6 +15,11 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
 
     @Override
+    public String getThisPageTitle() {
+        return "登录";
+    }
+
+    @Override
     public int getLayoutID() {
         return  R.layout.activity_login;
     }

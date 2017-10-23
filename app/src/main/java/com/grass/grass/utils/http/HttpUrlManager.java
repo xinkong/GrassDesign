@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface HttpUrlManager {
 
-    String BASEURL = "http://192.168.9.156:8080/";
+    String BASEURL = "http://192.168.9.6:8080/";
 
     /**
      * 获取登录用户信息
@@ -22,4 +22,12 @@ public interface HttpUrlManager {
     @GET("/AppClient/UserInfo/login")
     Flowable<UserEntity> login(@Query("userName") String username,
                                @Query("pwd") String pwd);
+
+
+    /**
+     * 获取登录用户信息
+     */
+    @GET("/AppClient/UserInfo/errorTest")
+    Flowable<UserEntity> errorTest(@Query("userName") String userName);
+
 }

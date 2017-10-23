@@ -1,11 +1,15 @@
 package com.grass.grass.base;
 
+import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-
+import com.grass.grass.app.Constants;
 import com.grass.grass.utils.NetWorkConnInfo;
+import com.grass.grass.utils.ProgressDialogManager;
 import com.grass.grass.utils.http.ApiException;
+import com.orhanobut.logger.Logger;
 
 import io.reactivex.subscribers.ResourceSubscriber;
 import retrofit2.HttpException;
@@ -15,58 +19,61 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
     private String mErrorMsg;
     private boolean isShowErrorState = true;
 
-    protected CommonSubscriber(BaseView view){
+
+    protected CommonSubscriber(BaseView view) {
         this.mView = view;
     }
 
-    protected CommonSubscriber(BaseView view, String errorMsg){
-        this.mView = view;
-        this.mErrorMsg = errorMsg;
+    protected CommonSubscriber(BaseView view, String hideMsg) {
+//        this.mView = view;
+//        mView.stateLoading();
+        this(view, null, hideMsg);
     }
 
-    protected CommonSubscriber(BaseView view, boolean isShowErrorState){
+    protected CommonSubscriber(BaseView view, Context context, String hideMsg) {
         this.mView = view;
-        this.isShowErrorState = isShowErrorState;
+        if (!NetWorkConnInfo.isNetworkConnected()) {//提示网络不可用
+            onError(new ApiException("无网络", Constants.NONETWORKCODE));
+            onComplete();
+            return;
+        }
+        if (context != null) {
+            ProgressDialogManager.getInstance().showWait(context, hideMsg);
+        }
     }
 
-    protected CommonSubscriber(BaseView view, String errorMsg, boolean isShowErrorState){
-        this.mView = view;
-        this.mErrorMsg = errorMsg;
-        this.isShowErrorState = isShowErrorState;
-    }
 
     @Override
     public void onComplete() {
+        ProgressDialogManager.getInstance().dissmiss();
+    }
 
+    @Override
+    public void onNext(T t) {
+//        ProgressDialogManager.getInstance().dissmiss();
     }
 
     @Override
     public void onError(Throwable e) {
+
+        ProgressDialogManager.getInstance().dissmiss();
+
         if (mView == null) {
             return;
         }
 
-        //判断当前网络连接状况
-
-        if(NetWorkConnInfo.isNetworkConnected()){
-            if (mErrorMsg != null && !TextUtils.isEmpty(mErrorMsg)) {
-                mView.showErrorMsg(mErrorMsg);
-            } else if (e instanceof ApiException) {
-                mView.showErrorMsg(e.toString());
-            } else if (e instanceof HttpException) {
-                mView.showErrorMsg("数据加载失败ヽ(≧Д≦)ノ");
+        if (e instanceof ApiException) {
+            ApiException exception = (ApiException) e;
+            int code = exception.getCode();
+            if (code == Constants.NONETWORKCODE) {
+                Logger.e("当前无网络连接");
             } else {
-                mView.showErrorMsg("未知错误ヽ(≧Д≦)ノ");
-                Log.e("error",e.toString());
+                mView.showErrorMsg(e.toString());
             }
-            if (isShowErrorState) {
-                mView.stateError();
-            }
-        }else {
-            mView.showErrorMsg("手机网络不可用");
-            Log.e("error",e.toString());
+        } else {
+            mView.showErrorMsg("未知错误ヽ(≧Д≦)ノ");
+            Log.e("error", e.toString());
         }
-
 
     }
 }
