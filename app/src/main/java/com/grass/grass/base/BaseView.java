@@ -9,12 +9,12 @@ public interface BaseView {
 
     void showErrorMsg(String msg);
     //=======  State  =======
-    void stateError();
+    void showErrorView(int errorCode);
 
-    void stateEmpty();
+    void showEmptyView();
 
-    void stateLoading();
+    void showLoadingView(String hideMsg);
 
-    void stateMain();
+    void showMainView();
 
 }

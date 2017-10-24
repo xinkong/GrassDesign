@@ -25,10 +25,11 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
         addSubscribe(mHttpUrlManager.login(name,pwd)
                 .compose(RxUtil.<UserEntity>rxSchedulerHelper())
                 .compose(RxUtil.<UserEntity>handleMyResult())
-                .subscribeWith(new CommonSubscriber<UserEntity>(mView,mContext,"获取数据中..."){
+                .subscribeWith(new CommonSubscriber<UserEntity>(mView,"获取数据中..."){
 
                     @Override
                     public void onNext(UserEntity userEntity) {
+                        super.onNext(userEntity);
                         Logger.i(userEntity.toString());
                         mView.showContent(userEntity.toString());
                     }

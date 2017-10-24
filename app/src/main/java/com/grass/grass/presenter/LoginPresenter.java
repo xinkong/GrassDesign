@@ -42,6 +42,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
 
                     @Override
                     public void onNext(UserEntity userEntity) {
+                        super.onNext(userEntity);
                         Logger.i(userEntity.toString());
                         mView.loginSuccess();
                     }

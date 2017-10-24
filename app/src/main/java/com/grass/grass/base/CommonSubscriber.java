@@ -1,9 +1,6 @@
 package com.grass.grass.base;
 
-import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.grass.grass.app.Constants;
 import com.grass.grass.utils.NetWorkConnInfo;
@@ -12,45 +9,41 @@ import com.grass.grass.utils.http.ApiException;
 import com.orhanobut.logger.Logger;
 
 import io.reactivex.subscribers.ResourceSubscriber;
-import retrofit2.HttpException;
 
 public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
     private BaseView mView;
-    private String mErrorMsg;
-    private boolean isShowErrorState = true;
-
+    private Context mContext;
 
     protected CommonSubscriber(BaseView view) {
         this.mView = view;
     }
 
+    //初始化嵌套页面内加载方式的等待进度提醒
     protected CommonSubscriber(BaseView view, String hideMsg) {
-//        this.mView = view;
-//        mView.stateLoading();
         this(view, null, hideMsg);
     }
 
+    //初始化Dialog方式的等待提醒
     protected CommonSubscriber(BaseView view, Context context, String hideMsg) {
         this.mView = view;
-        if (!NetWorkConnInfo.isNetworkConnected()) {//提示网络不可用
-            onError(new ApiException("无网络", Constants.NONETWORKCODE));
-            onComplete();
-            return;
-        }
+        this.mContext = context;
         if (context != null) {
             ProgressDialogManager.getInstance().showWait(context, hideMsg);
+        } else {
+            mView.showLoadingView(hideMsg);
         }
     }
 
 
     @Override
     public void onComplete() {
-        ProgressDialogManager.getInstance().dissmiss();
+
     }
 
     @Override
     public void onNext(T t) {
-//        ProgressDialogManager.getInstance().dissmiss();
+        ProgressDialogManager.getInstance().dissmiss();
+        mView.showMainView();
     }
 
     @Override
@@ -62,17 +55,26 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
             return;
         }
 
+        if (!NetWorkConnInfo.isNetworkConnected()) {
+            mView.showErrorView(Constants.NoNetWorkCode);
+            return;
+        }
+
+        //显示错误消息和视图
         if (e instanceof ApiException) {
-            ApiException exception = (ApiException) e;
-            int code = exception.getCode();
-            if (code == Constants.NONETWORKCODE) {
-                Logger.e("当前无网络连接");
-            } else {
-                mView.showErrorMsg(e.toString());
-            }
+            mView.showErrorMsg(e.getMessage());
+            Logger.e("错误内容,code:" + ((ApiException) e).getCode() + ",message:" + e.getMessage());
         } else {
-            mView.showErrorMsg("未知错误ヽ(≧Д≦)ノ");
-            Log.e("error", e.toString());
+            mView.showErrorMsg("未知错误,请重试");
+            Logger.e("错误内容,error:" + e.toString());
+        }
+
+        if (mContext == null){
+            if(e instanceof ApiException){
+                mView.showErrorView(((ApiException) e).getCode());
+            }else {
+                mView.showErrorView(Constants.UnknownException);
+            }
         }
 
     }

@@ -36,6 +36,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     @Override
     public void loginSuccess() {
+        //测试空视图
+        showEmptyView();
         Toast.makeText(mContext(),"登录成功",Toast.LENGTH_SHORT).show();
     }
 }

@@ -35,6 +35,12 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     }
 
     @Override
+    public void onRetry() {
+        super.onRetry();
+        mPresenter.getData("zhangsan","pwd");
+    }
+
+    @Override
     public boolean isCanBack() {
         return false;
     }

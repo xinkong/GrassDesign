@@ -53,22 +53,23 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
-    public void stateError() {
+    public void showErrorView(int errorCode) {
+        super.errorView(errorCode);
     }
 
     @Override
-    public void stateEmpty() {
-
+    public void showEmptyView() {
+        super.emptyView();
     }
 
     @Override
-    public void stateLoading() {
-
+    public void showLoadingView(String msg) {
+        super.loading(msg);
     }
 
     @Override
-    public void stateMain() {
-
+    public void showMainView() {
+        super.loadSuccess();
     }
 
     public abstract void initInject();
