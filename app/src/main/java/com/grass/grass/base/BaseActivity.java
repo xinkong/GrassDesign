@@ -102,13 +102,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         BaseApplication.getInstance().removeActivity(this);
     }
 
-    public void errorView(int  msg) {
+    public void errorView(int msg) {
         mFlError.setVisibility(View.VISIBLE);
         mFlLoading.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.GONE);
-        if(msg == Constants.NoNetWorkCode){
+        if (msg == Constants.NoNetWorkCode) {
             mTvErrorMsg.setText("当前网络不可用,请检查网络连接");
-        }else {
+        } else {
             mTvErrorMsg.setText("访问服务端异常,请重试");
         }
     }
@@ -123,10 +123,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         mFlError.setVisibility(View.GONE);
         mFlLoading.setVisibility(View.VISIBLE);
         mEmptyView.setVisibility(View.GONE);
-        mTvLoadMsg.setText(TextUtils.isEmpty(msg)?"正在加载":msg);
+        mTvLoadMsg.setText(TextUtils.isEmpty(msg) ? "正在加载" : msg);
         //启动动画
-        AnimationDrawable animationDrawable= (AnimationDrawable) mIvLoadAnim.getDrawable();
-        if(animationDrawable!=null && !animationDrawable.isRunning()){
+        AnimationDrawable animationDrawable = (AnimationDrawable) mIvLoadAnim.getDrawable();
+        if (animationDrawable != null && !animationDrawable.isRunning()) {
             animationDrawable.start();
         }
     }
@@ -135,8 +135,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mFlError.setVisibility(View.GONE);
         mFlLoading.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.GONE);
-        AnimationDrawable animationDrawable= (AnimationDrawable) mIvLoadAnim.getDrawable();
-        if(animationDrawable!=null && animationDrawable.isRunning()){
+        AnimationDrawable animationDrawable = (AnimationDrawable) mIvLoadAnim.getDrawable();
+        if (animationDrawable != null && animationDrawable.isRunning()) {
             animationDrawable.stop();
         }
     }

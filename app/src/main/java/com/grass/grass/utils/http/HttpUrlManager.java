@@ -1,10 +1,15 @@
 package com.grass.grass.utils.http;
 
 
+import com.grass.grass.entity.BaseEntity;
+import com.grass.grass.entity.TokenEntity;
 import com.grass.grass.entity.UserEntity;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -20,14 +25,12 @@ public interface HttpUrlManager {
      * 获取登录用户信息
      */
     @GET("/AppClient/UserInfo/login")
-    Flowable<UserEntity> login(@Query("userName") String username,
-                               @Query("pwd") String pwd);
-
+    Flowable<BaseEntity<UserEntity>> login(@Query("userName") String username, @Query("pwd") String pwd);
 
     /**
-     * 获取登录用户信息
+     * 测试接口
      */
-    @GET("/AppClient/UserInfo/errorTest")
-    Flowable<UserEntity> errorTest(@Query("userName") String userName);
+    @POST("/AppClient/UserInfo/errorTest")
+    Flowable<BaseEntity<List<TokenEntity>>> errorTest(@Query("userName") String userName);
 
 }

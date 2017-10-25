@@ -4,7 +4,7 @@ package com.grass.grass.entity;
  * Created by huchao on 2017/10/17.
  */
 
-public class UserEntity extends BaseEntity<UserEntity>{
+public class UserEntity{
 
     public int id;
     public String userManagerName;

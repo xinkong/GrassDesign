@@ -23,7 +23,7 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
     public void getData(String name,String pwd) {
 
         addSubscribe(mHttpUrlManager.login(name,pwd)
-                .compose(RxUtil.<UserEntity>rxSchedulerHelper())
+                .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.<UserEntity>handleMyResult())
                 .subscribeWith(new CommonSubscriber<UserEntity>(mView,"获取数据中..."){
 
