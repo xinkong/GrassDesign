@@ -16,12 +16,14 @@ public interface Constants {
 
     //================= KEY ====================
 
+    String userName = "userName";
+
 
     //================= PATH ====================
 
-    String PATH_DATA = BaseApplication.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    String PATH_DATA = BaseApplication.getInstance().getCacheDir().getAbsolutePath() + File.separator + "Grass";
 
-    String PATH_CACHE = PATH_DATA + "/NetCache";
+    String PATH_CACHE = PATH_DATA + "/GrassCache";
 
     String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "codeest" + File.separator + "GeekNews";
 

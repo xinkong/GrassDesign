@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyPressView">
+
+        <!--背景颜色-->
+        <attr name="mPressBackGoroundColor" format="color"/>
+        <!--按下的背景颜色-->
+        <attr name="mPressBackGoroundColorSelected" format="color"/>
+        <!--圆角半径-->
+        <attr name="mPressRadius" format="dimension"/>
+        <!--内容是否默认居中-->
+        <attr name="mPressContentCenter" format="boolean"/>
+        <!--是否是圆形样式-->
+        <attr name="mPressCircleView" format="boolean"/>
+
+    </declare-styleable>
+
+</resources>

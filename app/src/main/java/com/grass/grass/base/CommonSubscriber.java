@@ -14,6 +14,7 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
     private BaseView mView;
     private Context mContext;
 
+    //不带效果的view
     protected CommonSubscriber(BaseView view) {
         this.mView = view;
     }
@@ -33,7 +34,6 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
             mView.showLoadingView(hideMsg);
         }
     }
-
 
     @Override
     public void onComplete() {

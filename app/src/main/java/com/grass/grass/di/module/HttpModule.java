@@ -118,9 +118,6 @@ public class HttpModule {
 
 
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
-
-        Log.i("tag单例模式",builder.toString()+",client"+client.toString());
-
         return builder
                 .baseUrl(url)
                 .client(client)

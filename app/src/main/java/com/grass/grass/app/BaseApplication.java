@@ -53,7 +53,10 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        initBugly();
+        if(!BuildConfig.DEBUG){
+            initBugly();
+        }
+
 
         instance = this;
 
@@ -82,32 +85,32 @@ public class BaseApplication extends Application {
         /**
          *  全量升级状态回调
          */
-        Beta.upgradeStateListener = new UpgradeStateListener() {
-            @Override
-            public void onUpgradeFailed(boolean b) {
-
-            }
-
-            @Override
-            public void onUpgradeSuccess(boolean b) {
-
-            }
-
-            @Override
-            public void onUpgradeNoVersion(boolean b) {
-                Toast.makeText(getApplicationContext(), "最新版本", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUpgrading(boolean b) {
-                Toast.makeText(getApplicationContext(), "onUpgrading", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDownloadCompleted(boolean b) {
-
-            }
-        };
+//        Beta.upgradeStateListener = new UpgradeStateListener() {
+//            @Override
+//            public void onUpgradeFailed(boolean b) {
+//
+//            }
+//
+//            @Override
+//            public void onUpgradeSuccess(boolean b) {
+//
+//            }
+//
+//            @Override
+//            public void onUpgradeNoVersion(boolean b) {
+//                Toast.makeText(getApplicationContext(), "最新版本", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onUpgrading(boolean b) {
+//                Toast.makeText(getApplicationContext(), "onUpgrading", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onDownloadCompleted(boolean b) {
+//
+//            }
+//        };
 
         /**
          * 补丁回调接口，可以监听补丁接收、下载、合成的回调

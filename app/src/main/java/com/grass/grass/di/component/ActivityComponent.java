@@ -5,8 +5,9 @@ import android.app.Activity;
 
 import com.grass.grass.di.module.ActivityModule;
 import com.grass.grass.di.scope.ActivityScope;
-import com.grass.grass.ui.LoginActivity;
+import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.ui.MainActivity;
+import com.grass.grass.ui.login.RegisterActivity;
 
 import dagger.Component;
 
@@ -23,5 +24,7 @@ public interface ActivityComponent {
     void inject(MainActivity themeActivity);
 
     void inject(LoginActivity loginActivity);
+
+    void inject(RegisterActivity loginActivity);
 
 }

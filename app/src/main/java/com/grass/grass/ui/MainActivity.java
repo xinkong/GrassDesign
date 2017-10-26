@@ -1,7 +1,6 @@
 package com.grass.grass.ui;
 
 import android.content.Intent;
-import android.view.View;
 import android.widget.TextView;
 
 
@@ -9,6 +8,7 @@ import com.grass.grass.R;
 import com.grass.grass.base.BaseMvpActivity;
 import com.grass.grass.contract.MainContract;
 import com.grass.grass.presenter.MainPresenter;
+import com.grass.grass.ui.login.LoginActivity;
 
 import butterknife.BindView;
 
