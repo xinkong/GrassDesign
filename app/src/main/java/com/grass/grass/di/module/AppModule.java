@@ -1,6 +1,8 @@
 package com.grass.grass.di.module;
 
 
+import android.app.Application;
+
 import com.grass.grass.app.BaseApplication;
 
 import javax.inject.Singleton;
