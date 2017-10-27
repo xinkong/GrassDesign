@@ -17,8 +17,7 @@ import javax.inject.Inject;
 public class RegisterPresenter extends RxPresenter<Register.RegisterView> implements Register.RegisterConteact {
 
     @Inject
-    public RegisterPresenter() {
-    }
+    public RegisterPresenter() {}
 
     @Override
     public void register(UserEntity userEntity) {

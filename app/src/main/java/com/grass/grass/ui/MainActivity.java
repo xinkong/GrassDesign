@@ -30,8 +30,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
     @Override
     public void onActivityStart() {
-        mPresenter.getData("zhangsan","pwd");
-        mTextView.setOnClickListener(view -> startActivity(new Intent(mContext(),LoginActivity.class)));
+//        mPresenter.getData("zhangsan","pwd");
+//        mTextView.setOnClickListener(view -> startActivity(new Intent(mContext(),LoginActivity.class)));
     }
 
     @Override

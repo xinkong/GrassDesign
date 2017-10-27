@@ -1,7 +1,6 @@
 package com.grass.grass.ui.login;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,13 +8,12 @@ import android.widget.TextView;
 import com.grass.grass.R;
 import com.grass.grass.base.BaseMvpActivity;
 import com.grass.grass.contract.LoginContract;
-import com.grass.grass.presenter.LoginPresenter;
+import com.grass.grass.presenter.login.LoginPresenter;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.utils.AppUtils;
 import com.grass.grass.view.MyPressView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -46,22 +44,22 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @Override
     public void onActivityStart() {
         mCommit.setOnClickListener(view -> commit());
-        mRegister.setOnClickListener(view ->AppUtils.jump(mContext(),RegisterActivity.class));
+        mRegister.setOnClickListener(view -> AppUtils.jump(mContext(), RegisterActivity.class));
     }
 
     private void commit() {
         String userName = mUserName.getText().toString();
         String userPwd = mUserPwd.getText().toString();
-        if(TextUtils.isEmpty(userName)){
-            AppUtils.toast(mContext(),"用户名不能为空");
+        if (TextUtils.isEmpty(userName)) {
+            AppUtils.toast(mContext(), "用户名不能为空");
             return;
         }
-        if(TextUtils.isEmpty(userPwd)){
-            AppUtils.toast(mContext(),"密码不能为空");
+        if (TextUtils.isEmpty(userPwd)) {
+            AppUtils.toast(mContext(), "密码不能为空");
             return;
         }
 
-        mPresenter.login(userName,userPwd);
+        mPresenter.login(userName, userPwd);
 
     }
 
@@ -73,7 +71,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @Override
     public void loginSuccess() {
         startActivity(new Intent(mContext(), MainActivity.class));
-
+        finish();
     }
 }
 
