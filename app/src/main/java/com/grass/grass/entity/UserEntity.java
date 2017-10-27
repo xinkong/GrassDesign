@@ -6,20 +6,18 @@ package com.grass.grass.entity;
 
 public class UserEntity{
 
-    public int id;
-    public String userManagerName;
-    public String userManagerPhoneNo;
-    public String userManagerPwd;
-    public String userRegisterDate;
+    public long userId;
+    public String userName;
+    public String userPwd;
+    public String userHeadPic;
 
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id=" + id +
-                ", userManagerName='" + userManagerName + '\'' +
-                ", userManagerPhoneNo='" + userManagerPhoneNo + '\'' +
-                ", userManagerPwd='" + userManagerPwd + '\'' +
-                ", userRegisterDate='" + userRegisterDate + '\'' +
+                "userId=" + userId +
+                ", UserName='" + userName + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", userHeadPic='" + userHeadPic + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.grass.grass.utils;
 
 
+import com.grass.grass.app.Constants;
 import com.grass.grass.entity.BaseEntity;
 import com.grass.grass.utils.http.ApiException;
 
@@ -51,25 +52,7 @@ public class RxUtil {
                 return httpResponseFlowable.flatMap(new Function<BaseEntity<T>, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(BaseEntity<T> response) {
-                        if (response.returnCode == 0) {
-                            return createData(response.data);
-                        } else {
-                            return Flowable.error(new ApiException(response.returnMessage));
-                        }
-                    }
-                });
-            }
-        };
-    }
-
-    public static <T> FlowableTransformer<BaseEntity<T>, T> handleMyResult() {   //compose判断结果
-        return new FlowableTransformer<BaseEntity<T>, T>() {
-            @Override
-            public Flowable<T> apply(Flowable<BaseEntity<T>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<BaseEntity<T>, Flowable<T>>() {
-                    @Override
-                    public Flowable<T> apply(BaseEntity<T> response) {
-                        if (response.returnCode == 0) {
+                        if (Constants.RequestSuccessCode.equals(response.returnCode)) {
                             return createData(response.data);
                         } else {
                             return Flowable.error(new ApiException(response.returnMessage));

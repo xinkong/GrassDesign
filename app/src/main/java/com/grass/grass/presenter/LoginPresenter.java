@@ -1,29 +1,15 @@
 package com.grass.grass.presenter;
 
-import android.content.Context;
-import android.util.Log;
-
 
 import com.grass.grass.app.Constants;
 import com.grass.grass.base.CommonSubscriber;
 import com.grass.grass.base.RxPresenter;
 import com.grass.grass.contract.LoginContract;
-import com.grass.grass.entity.BaseEntity;
-import com.grass.grass.entity.TokenEntity;
 import com.grass.grass.entity.UserEntity;
 import com.grass.grass.utils.RxUtil;
 import com.grass.grass.utils.SharePrefsUtils;
-import com.grass.grass.utils.http.HttpUrlManager;
-import com.orhanobut.logger.Logger;
-
-import org.reactivestreams.Publisher;
-
-import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
 
 /**
  * Created by huchao on 2017/10/19.
@@ -61,7 +47,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
                     public void onNext(UserEntity userEntity) {
                         super.onNext(userEntity);
                         //保存用户信息
-                        SharePrefsUtils.getInstance().putString(Constants.userName,userEntity.userManagerName);
+                        SharePrefsUtils.getInstance().putString(Constants.UserName,userEntity.userName);
                         mView.loginSuccess();
                     }
                 }));

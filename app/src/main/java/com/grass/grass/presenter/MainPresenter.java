@@ -24,7 +24,7 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
 
         addSubscribe(mHttpUrlManager.login(name,pwd)
                 .compose(RxUtil.rxSchedulerHelper())
-                .compose(RxUtil.<UserEntity>handleMyResult())
+                .compose(RxUtil.<UserEntity>handleResult())
                 .subscribeWith(new CommonSubscriber<UserEntity>(mView,"获取数据中..."){
 
                     @Override

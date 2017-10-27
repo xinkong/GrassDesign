@@ -10,13 +10,15 @@ import java.io.File;
 public interface Constants {
 
     //================= TYPE ====================
+    //请求成功
+    String RequestSuccessCode = "0";
     //无网络情况的错误码
     int NoNetWorkCode = 100;
     int UnknownException = 101;
 
     //================= KEY ====================
 
-    String userName = "userName";
+    String UserName = "UserName";
 
 
     //================= PATH ====================

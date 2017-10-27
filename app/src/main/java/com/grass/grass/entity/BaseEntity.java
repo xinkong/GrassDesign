@@ -6,7 +6,7 @@ package com.grass.grass.entity;
 
 public class BaseEntity<T> {
 
-    public int returnCode;
+    public String returnCode;
     public T data;
     public String returnMessage;
 

@@ -3,14 +3,11 @@ package com.grass.grass.ui;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.grass.grass.R;
 import com.grass.grass.app.Constants;
 import com.grass.grass.base.BaseActivity;
-import com.grass.grass.ui.MainActivity;
 import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.utils.SharePrefsUtils;
 
@@ -20,7 +17,7 @@ public class StartActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(TextUtils.isEmpty(SharePrefsUtils.getInstance().getString(Constants.userName,""))){
+            if(TextUtils.isEmpty(SharePrefsUtils.getInstance().getString(Constants.UserName,""))){
                 startActivity(new Intent(mContext(),LoginActivity.class));
             }else {
                 startActivity(new Intent(mContext(),MainActivity.class));
