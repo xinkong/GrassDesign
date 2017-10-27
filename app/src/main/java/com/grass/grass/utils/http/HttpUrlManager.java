@@ -25,7 +25,7 @@ public interface HttpUrlManager {
      * 获取登录用户信息
      */
     @GET("/userInfo/login")
-    Flowable<BaseEntity<UserEntity>> login(@Query("UserName") String username, @Query("pwd") String pwd);
+    Flowable<BaseEntity<UserEntity>> login(@Query("userName") String username, @Query("userPwd") String pwd);
 
 
     /**
@@ -34,7 +34,7 @@ public interface HttpUrlManager {
      * @param userPwd
      * @return
      */
-    @POST("/AppClient/UserInfo/login")
-    Flowable<BaseEntity<String>> register(@Query("UserName") String userName,@Query("userPwd") String userPwd);
+    @GET("/userInfo/register")
+    Flowable<BaseEntity<String>> register(@Query("userName") String userName,@Query("userPwd") String userPwd);
 
 }
