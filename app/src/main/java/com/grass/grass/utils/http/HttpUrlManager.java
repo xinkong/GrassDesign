@@ -6,10 +6,14 @@ import com.grass.grass.entity.TokenEntity;
 import com.grass.grass.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
+import okhttp3.RequestBody;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -18,6 +22,8 @@ import retrofit2.http.Query;
  */
 
 public interface HttpUrlManager {
+
+    String BASEIMAGEURL = "http://192.168.9.6:8080/";
 
     String BASEURL = "http://192.168.9.6:8080/";
 
@@ -36,5 +42,9 @@ public interface HttpUrlManager {
      */
     @GET("/userInfo/register")
     Flowable<BaseEntity<String>> register(@Query("userName") String userName,@Query("userPwd") String userPwd);
+
+    @Multipart
+    @POST("/uploadImage/uploadImages/upload")
+    Flowable<BaseEntity<List<String>>> uploadFile(@PartMap() Map<String, RequestBody> maps);
 
 }

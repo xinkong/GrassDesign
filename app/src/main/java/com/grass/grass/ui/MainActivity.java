@@ -1,14 +1,15 @@
 package com.grass.grass.ui;
 
-import android.content.Intent;
+import android.os.Environment;
 import android.widget.TextView;
-
 
 import com.grass.grass.R;
 import com.grass.grass.base.BaseMvpActivity;
 import com.grass.grass.contract.MainContract;
 import com.grass.grass.presenter.MainPresenter;
-import com.grass.grass.ui.login.LoginActivity;
+import com.orhanobut.logger.Logger;
+
+import java.io.File;
 
 import butterknife.BindView;
 
@@ -31,7 +32,14 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     @Override
     public void onActivityStart() {
 //        mPresenter.getData("zhangsan","pwd");
-//        mTextView.setOnClickListener(view -> startActivity(new Intent(mContext(),LoginActivity.class)));
+        mTextView.setOnClickListener(view -> uploadeImage());
+    }
+
+    private void uploadeImage() {
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/hsc/app/img/temp/test_20170926161616.jpg";
+        File file = new File(path);
+        mPresenter.uploadImages(file);
+
     }
 
     @Override

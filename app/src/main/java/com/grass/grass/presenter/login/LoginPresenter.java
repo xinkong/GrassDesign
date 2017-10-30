@@ -23,22 +23,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
 
     @Override
     public void login(String name, String pwd) {
-        //链式调用测试
-//        addSubscribe(mHttpUrlManager.login("lisi", "lksdj")
-//                .compose(RxUtil.<UserEntity>handleResult())
-//                .flatMap(userEntity -> mHttpUrlManager.errorTest(userEntity.userManagerName))
-//                .compose(RxUtil.<List<TokenEntity>>handleResult())
-//                .compose(RxUtil.rxSchedulerHelper())
-//                .subscribeWith(new CommonSubscriber<List<TokenEntity>>(mView, mContext, "正在登录...") {
-//
-//                    @Override
-//                    public void onNext(List<TokenEntity> userEntity) {
-//                        super.onNext(userEntity);
-//                        Logger.i(userEntity.toString());
-//                        mView.loginSuccess();
-//                    }
-//                }));
-
         addSubscribe(mHttpUrlManager.login(name, pwd)
                 .compose(RxUtil.<UserEntity>handleResult())
                 .compose(RxUtil.rxSchedulerHelper())
