@@ -46,7 +46,7 @@ public interface HttpUrlManager {
     Flowable<BaseEntity<String>> register(@Query("userName") String userName,@Query("userPwd") String userPwd);
 
     @Multipart
-    @POST("/uploadImage/uploadImages/upload")
-    Flowable<BaseEntity<List<String>>> uploadFile(@Part() List<MultipartBody.Part> parts);
+    @POST("/fileUpload/upload")
+    Flowable<BaseEntity<String>> uploadFile(@Part() List<MultipartBody.Part> parts);
 
 }

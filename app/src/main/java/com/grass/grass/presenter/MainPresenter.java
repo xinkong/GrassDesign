@@ -67,10 +67,10 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
                     return mHttpUrlManager.uploadFile(parts);
                 })
                 .compose(RxUtil.rxSchedulerHelper())
-                .compose(RxUtil.<List<String>>handleResult())
-                .subscribeWith(new CommonSubscriber<List<String>>(mView, mContext, "正在提交数据") {
+                .compose(RxUtil.<String>handleResult())
+                .subscribeWith(new CommonSubscriber<String>(mView, mContext, "正在提交数据") {
                     @Override
-                    public void onNext(List<String> url) {
+                    public void onNext(String url) {
                         super.onNext(url);
                         Logger.i(url.toString());
                         mView.showContent(url.toString());
