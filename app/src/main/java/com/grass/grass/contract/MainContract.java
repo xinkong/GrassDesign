@@ -5,6 +5,7 @@ import com.grass.grass.base.BasePresenter;
 import com.grass.grass.base.BaseView;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by huchao on 2017/10/17.
@@ -19,6 +20,6 @@ public interface MainContract {
     interface Presenter extends BasePresenter<MainView> {
         void getData(String name, String pwd);
 
-        void uploadImages(File filePath);
+        void uploadImages(List<String> filePath);
     }
 }

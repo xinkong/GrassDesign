@@ -10,6 +10,8 @@ import com.grass.grass.presenter.MainPresenter;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,9 +38,12 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     }
 
     private void uploadeImage() {
+        List<String> paths = new ArrayList<>();
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/hsc/app/img/temp/test_20170926161616.jpg";
-        File file = new File(path);
-        mPresenter.uploadImages(file);
+        String path2 = Environment.getExternalStorageDirectory().getAbsolutePath()+"/hsc/app/img/temp/test_20170926161559.jpg";
+        paths.add(path);
+        paths.add(path2);
+        mPresenter.uploadImages(paths);
 
     }
 
