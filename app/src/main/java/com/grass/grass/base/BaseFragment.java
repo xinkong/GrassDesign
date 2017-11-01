@@ -169,7 +169,9 @@ public abstract class BaseFragment extends Fragment {
     public void onRetry() {
     }
 
-    public abstract String getThisPageTitle();
+    public String getThisPageTitle(){
+        return "";
+    }
 
     public abstract int getLayoutID();
 
