@@ -5,14 +5,18 @@ import com.grass.grass.entity.BaseEntity;
 import com.grass.grass.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 import okhttp3.MultipartBody;
+import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 /**
@@ -26,6 +30,17 @@ public interface HttpUrlManager {
     String BASEIMAGEUPLOADURL = "http://192.168.9.6:8888/WebImageService/fileUpload/upload";
     //BaseUrl
     String BASEURL = "http://192.168.9.6:8080/";
+
+
+    /**
+     * 文件上传
+     * @param url
+     * @param parts
+     * @return
+     */
+    @Multipart
+    @POST()
+    Flowable<BaseEntity<String>> uploadFile(@Url String url, @Part() List<MultipartBody.Part> parts);
 
     /**
      * 获取登录用户信息
@@ -42,8 +57,6 @@ public interface HttpUrlManager {
     @GET("/userInfo/register")
     Flowable<BaseEntity<String>> register(@Query("userName") String userName, @Query("userPwd") String userPwd);
 
-    @Multipart
-    @POST()
-    Flowable<BaseEntity<String>> uploadFile(@Url String url, @Part() List<MultipartBody.Part> parts);
-
+    @POST("/msgInfo/saveMsg")
+    Flowable<BaseEntity<String>> sendMsg(@Body Map<String,String> params);
 }

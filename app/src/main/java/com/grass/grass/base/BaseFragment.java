@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.grass.grass.R;
-import com.grass.grass.app.BaseApplication;
 import com.grass.grass.app.Constants;
 
 import butterknife.ButterKnife;
@@ -65,6 +66,7 @@ public abstract class BaseFragment extends Fragment {
         mUnBinder = ButterKnife.bind(mView);
 
         if (isShowTitle()) {
+            initToolbarRightMenu();
             mTvToolbarTitle.setText(getThisPageTitle() == null ? "" : getThisPageTitle());
             if (isCanBack()) {
                 mToolbar.setNavigationIcon(R.mipmap.base_view_back);
@@ -77,12 +79,38 @@ public abstract class BaseFragment extends Fragment {
         return mView;
     }
 
+    private void initToolbarRightMenu(){
+        if(mToolbar == null){
+            return ;
+        }
+        mToolbar.setOnMenuItemClickListener(menuItem ->{
+            onItemMenuClick(menuItem);
+            return true;
+        });
+    }
+
+    public void onItemMenuClick(MenuItem item){
+
+    }
+
+    public void hideToolBarMenu(){
+        Menu menu = mToolbar.getMenu();
+        if(menu!=null){
+            menu.clear();
+        }
+
+    }
+
+    public Toolbar getToolbar(){
+        return mToolbar;
+    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         onViewCreated();
-        onActivityStart();
+        onFragmentStart();
     }
 
     private void initCommentView() {
@@ -177,7 +205,7 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void onViewCreated();
 
-    public abstract void onActivityStart();
+    public abstract void onFragmentStart();
 
     public View findViewById(int id) {
         return mView.findViewById(id);

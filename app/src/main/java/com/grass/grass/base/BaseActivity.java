@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -62,6 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mUnBinder = ButterKnife.bind(this);
 
         if (isShowTitle()) {
+            initToolbarRightMenu();
             mTvToolbarTitle.setText(getThisPageTitle() == null ? "" : getThisPageTitle());
             if (isCanBack()) {
                 mToolbar.setNavigationIcon(R.mipmap.base_view_back);
@@ -74,6 +77,34 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         onViewCreated();
         onActivityStart();
+    }
+
+
+    //初始化右侧menu
+    private void initToolbarRightMenu(){
+        if(mToolbar == null){
+            return ;
+        }
+        mToolbar.setOnMenuItemClickListener(menuItem ->{
+            onItemMenuClick(menuItem);
+            return true;
+        });
+    }
+
+    public void onItemMenuClick(MenuItem item){
+
+    }
+
+    public void hideToolBarMenu(){
+        Menu menu = mToolbar.getMenu();
+        if(menu!=null){
+            menu.clear();
+        }
+
+    }
+
+    public Toolbar getToolbar(){
+        return mToolbar;
     }
 
     private void initCommentView() {
@@ -100,6 +131,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         mUnBinder.unbind();
         BaseApplication.getInstance().removeActivity(this);
+        //关闭软件盘
+
     }
 
     public void errorView(int msg) {

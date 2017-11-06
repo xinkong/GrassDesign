@@ -44,7 +44,7 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
     }
 
     @Override
-    public void onActivityStart() {
+    public void onFragmentStart() {
 
     }
 }

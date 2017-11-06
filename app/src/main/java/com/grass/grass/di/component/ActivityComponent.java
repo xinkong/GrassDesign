@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.grass.grass.di.module.ActivityModule;
 import com.grass.grass.di.scope.ActivityScope;
+import com.grass.grass.ui.home.AddMsgActivity;
 import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.ui.login.RegisterActivity;
@@ -26,5 +27,7 @@ public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(RegisterActivity loginActivity);
+
+    void inject(AddMsgActivity addMsgActivity);
 
 }

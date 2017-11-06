@@ -19,6 +19,7 @@ public interface Constants {
     //================= KEY ====================
 
     String UserName = "UserName";
+    String UserId = "UserId";
 
 
     //================= PATH ====================
