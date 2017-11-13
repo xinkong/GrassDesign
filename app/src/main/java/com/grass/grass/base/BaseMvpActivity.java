@@ -53,7 +53,7 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
-    public void showErrorView(int errorCode) {
+    public void showErrorView(String errorCode) {
         super.errorView(errorCode);
     }
 

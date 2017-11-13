@@ -33,9 +33,6 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
 
-
-    private Unbinder mUnBinder;
-
     private View mView;
     //初始化控件
     Toolbar mToolbar;
@@ -53,6 +50,8 @@ public abstract class BaseFragment extends Fragment {
     RelativeLayout mEmptyView;
     TextView mTvEmptyMsg;
 
+    private Unbinder mUnBinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
         //加载内容体
         View view = inflater.inflate(getLayoutID(), mFlContainer, false);
         mFlContainer.addView(view);
-        mUnBinder = ButterKnife.bind(mView);
+        mUnBinder = ButterKnife.bind(this,mView);
 
         if (isShowTitle()) {
             initToolbarRightMenu();
@@ -139,11 +138,11 @@ public abstract class BaseFragment extends Fragment {
         mUnBinder.unbind();
     }
 
-    public void errorView(int msg) {
+    public void errorView(String code) {
         mFlError.setVisibility(View.VISIBLE);
         mFlLoading.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.GONE);
-        if (msg == Constants.NoNetWorkCode) {
+        if (Constants.NoNetWorkCode.equals(code)) {
             mTvErrorMsg.setText("当前网络不可用,请检查网络连接");
         } else {
             mTvErrorMsg.setText("访问服务端异常,请重试");

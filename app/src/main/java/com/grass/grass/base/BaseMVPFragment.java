@@ -54,7 +54,7 @@ public abstract class BaseMVPFragment<T extends BasePresenter> extends BaseFragm
     }
 
     @Override
-    public void showErrorView(int errorCode) {
+    public void showErrorView(String errorCode) {
         super.errorView(errorCode);
     }
 

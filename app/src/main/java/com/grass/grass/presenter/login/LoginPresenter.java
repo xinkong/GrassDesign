@@ -31,6 +31,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
                     public void onNext(UserEntity userEntity) {
                         super.onNext(userEntity);
                         //保存用户信息
+                        SharePrefsUtils.getInstance().putString(Constants.UserId,userEntity.userId+"");
                         SharePrefsUtils.getInstance().putString(Constants.UserName,userEntity.userName);
                         mView.loginSuccess();
                     }

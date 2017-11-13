@@ -17,7 +17,7 @@ public class StartActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(TextUtils.isEmpty(SharePrefsUtils.getInstance().getString(Constants.UserName,""))){
+            if(TextUtils.isEmpty(SharePrefsUtils.getInstance().getString(Constants.UserId,""))){
                 startActivity(new Intent(mContext(),LoginActivity.class));
             }else {
                 startActivity(new Intent(mContext(),MainActivity.class));

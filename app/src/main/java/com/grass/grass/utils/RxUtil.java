@@ -55,7 +55,7 @@ public class RxUtil {
                         if (Constants.RequestSuccessCode.equals(response.returnCode)) {
                             return createData(response.data);
                         } else {
-                            return Flowable.error(new ApiException(response.returnMessage));
+                            return Flowable.error(new ApiException(response.returnMessage,response.returnCode));
                         }
                     }
                 });

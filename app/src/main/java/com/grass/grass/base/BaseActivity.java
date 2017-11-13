@@ -100,7 +100,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(menu!=null){
             menu.clear();
         }
-
     }
 
     public Toolbar getToolbar(){
@@ -135,11 +134,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    public void errorView(int msg) {
+    public void errorView(String code) {
         mFlError.setVisibility(View.VISIBLE);
         mFlLoading.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.GONE);
-        if (msg == Constants.NoNetWorkCode) {
+        if (Constants.NoNetWorkCode.equals(code)) {
             mTvErrorMsg.setText("当前网络不可用,请检查网络连接");
         } else {
             mTvErrorMsg.setText("访问服务端异常,请重试");

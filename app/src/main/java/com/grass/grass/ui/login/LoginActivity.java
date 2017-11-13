@@ -64,6 +64,11 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     }
 
     @Override
+    public boolean isCanBack() {
+        return false;
+    }
+
+    @Override
     public void initInject() {
         getActivityComponent().inject(this);
     }

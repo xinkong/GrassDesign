@@ -13,8 +13,9 @@ public interface Constants {
     //请求成功
     String RequestSuccessCode = "0";
     //无网络情况的错误码
-    int NoNetWorkCode = 100;
-    int UnknownException = 101;
+    String NoNetWorkCode = "EAPP_100";
+    //未知异常
+    String UnknownException = "EAPP_101";
 
     //================= KEY ====================
 

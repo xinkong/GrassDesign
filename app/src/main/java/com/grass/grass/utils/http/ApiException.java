@@ -2,22 +2,22 @@ package com.grass.grass.utils.http;
 
 public class ApiException extends Exception{
 
-    private int code;
+    private String code;
 
     public ApiException(String msg) {
         super(msg);
     }
 
-    public ApiException(String msg, int code) {
+    public ApiException(String msg, String code) {
         super(msg);
         this.code = code;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 }

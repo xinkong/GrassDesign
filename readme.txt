@@ -11,3 +11,6 @@ http://blog.csdn.net/qiujuer/article/details/44195131
     https://github.com/donkingliang/ImageSelector
     //图片压缩
     https://github.com/nanchen2251/CompressHelper
+
+    //统一adapte
+    https://github.com/pinguo-zhouwei/CustomAdapter

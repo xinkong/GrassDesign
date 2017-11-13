@@ -9,7 +9,7 @@ public interface BaseView {
 
     void showErrorMsg(String msg);
     //=======  State  =======
-    void showErrorView(int errorCode);
+    void showErrorView(String errorCode);
 
     void showEmptyView();
 

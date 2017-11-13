@@ -57,6 +57,11 @@ public interface HttpUrlManager {
     @GET("/userInfo/register")
     Flowable<BaseEntity<String>> register(@Query("userName") String userName, @Query("userPwd") String userPwd);
 
+    /**
+     * 保存消息
+     * @param params
+     * @return
+     */
     @POST("/msgInfo/saveMsg")
     Flowable<BaseEntity<String>> sendMsg(@Body Map<String,String> params);
 }
