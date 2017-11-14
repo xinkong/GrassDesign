@@ -1,10 +1,8 @@
 package com.grass.grass.di.module;
 
-import android.util.Log;
-
-
 import com.grass.grass.BuildConfig;
 import com.grass.grass.utils.http.HttpUrlManager;
+import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +52,7 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    OkHttpClient provideClient(OkHttpClient.Builder builder) {
+    public static OkHttpClient provideClient(OkHttpClient.Builder builder) {
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -118,6 +116,7 @@ public class HttpModule {
 
 
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
+        Logger.i(client.toString());
         return builder
                 .baseUrl(url)
                 .client(client)

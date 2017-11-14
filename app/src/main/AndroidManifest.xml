@@ -28,6 +28,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--配置glide-->
+        <meta-data
+            android:name="com.grass.grass.utils.glide.OkHttpGlideModule"
+            android:value="GlideModule" />
         <!-- Bugly升级SDK配置开始 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"

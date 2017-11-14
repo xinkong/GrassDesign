@@ -6,6 +6,10 @@ http://blog.csdn.net/qiujuer/article/details/44195131
 
 学习的资源
 
+
+    Glide官方文档
+    https://github.com/bumptech/glide
+
     https://github.com/vondear/RxTools
     //图片选择
     https://github.com/donkingliang/ImageSelector

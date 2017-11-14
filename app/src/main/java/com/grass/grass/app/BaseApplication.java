@@ -23,11 +23,17 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
-import com.tencent.bugly.beta.upgrade.UpgradeStateListener;
 
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by huchao on 2017/10/16.
@@ -49,14 +55,18 @@ public class BaseApplication extends Application {
         return instance;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        if(!BuildConfig.DEBUG){
+        if (!BuildConfig.DEBUG) {
             initBugly();
         }
 
+
+        //用于Glide加载图片使用
+        initOkhttp();
 
         instance = this;
 
@@ -66,6 +76,22 @@ public class BaseApplication extends Application {
         initLogger();
 
 
+    }
+
+    public static OkHttpClient mOkhttpClient;
+
+    private void initOkhttp() {
+
+        mOkhttpClient = new OkHttpClient.Builder()
+                .connectTimeout(1000, TimeUnit.MILLISECONDS)
+                .readTimeout(1000, TimeUnit.MILLISECONDS)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+                .build();
 
     }
 
@@ -181,7 +207,7 @@ public class BaseApplication extends Application {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .tag("GrassDesign")
                 .build();
-        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy){
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {
                 return BuildConfig.DEBUG;
@@ -215,7 +241,7 @@ public class BaseApplication extends Application {
     }
 
     public void getScreenSize() {
-        WindowManager windowManager = (WindowManager)this.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         Display display = windowManager.getDefaultDisplay();
         display.getMetrics(dm);
@@ -223,14 +249,14 @@ public class BaseApplication extends Application {
         DIMEN_DPI = dm.densityDpi;
         SCREEN_WIDTH = dm.widthPixels;
         SCREEN_HEIGHT = dm.heightPixels;
-        if(SCREEN_WIDTH > SCREEN_HEIGHT) {
+        if (SCREEN_WIDTH > SCREEN_HEIGHT) {
             int t = SCREEN_HEIGHT;
             SCREEN_HEIGHT = SCREEN_WIDTH;
             SCREEN_WIDTH = t;
         }
     }
 
-    public static AppComponent getAppComponent(){
+    public static AppComponent getAppComponent() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(instance))

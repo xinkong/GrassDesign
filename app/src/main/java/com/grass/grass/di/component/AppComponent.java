@@ -9,6 +9,7 @@ import com.grass.grass.utils.http.HttpUrlManager;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by codeest on 16/8/7.
@@ -21,4 +22,7 @@ public interface AppComponent {
 
     //在httpModule中提供出来访问实例
     HttpUrlManager getHttpUrlManager();
+
+    //提供OkHttpClient供外部访问
+    OkHttpClient getOkHttpClient();
 }
