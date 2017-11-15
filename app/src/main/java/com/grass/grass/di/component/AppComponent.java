@@ -4,6 +4,7 @@ package com.grass.grass.di.component;
 import com.grass.grass.app.BaseApplication;
 import com.grass.grass.di.module.AppModule;
 import com.grass.grass.di.module.HttpModule;
+import com.grass.grass.utils.glide.OkHttpUrlLoader;
 import com.grass.grass.utils.http.HttpUrlManager;
 
 import javax.inject.Singleton;
@@ -23,6 +24,11 @@ public interface AppComponent {
     //在httpModule中提供出来访问实例
     HttpUrlManager getHttpUrlManager();
 
-    //提供OkHttpClient供外部访问
+
+
+    //==============================单列注入===================
     OkHttpClient getOkHttpClient();
+    //注册单列OkHttpClient
+    void injectOkHttpClient(OkHttpUrlLoader okHttpUrlLoader);
+
 }

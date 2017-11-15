@@ -6,18 +6,21 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 import com.grass.grass.app.BaseApplication;
+import com.orhanobut.logger.Logger;
 
 import java.io.InputStream;
 
-import okhttp3.Call;
+import javax.inject.Inject;
+
+import okhttp3.OkHttpClient;
 
 public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
 
+    @Inject
+    public OkHttpClient mOkHttpClient;
 
-    private final Call.Factory client;
-
-    public OkHttpUrlLoader(Call.Factory client) {
-        this.client = client;
+    public OkHttpUrlLoader() {
+        BaseApplication.appComponent.injectOkHttpClient(this);
     }
 
     @Override
@@ -28,46 +31,18 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     @Override
     public LoadData<InputStream> buildLoadData(GlideUrl model, int width, int height,
                                                Options options) {
-        return new LoadData<>(model, new OkHttpStreamFetcher(client, model));
+        Logger.i(mOkHttpClient.toString());
+        return new LoadData<>(model, new OkHttpStreamFetcher(mOkHttpClient, model));
     }
 
     /**
      * The default factory for {@link OkHttpUrlLoader}s.
      */
     public static class Factory implements ModelLoaderFactory<GlideUrl, InputStream> {
-        private static volatile Call.Factory internalClient;
-        private Call.Factory client;
-
-        private static Call.Factory getInternalClient() {
-            if (internalClient == null) {
-                synchronized (Factory.class) {
-                    if (internalClient == null) {
-                        internalClient = BaseApplication.mOkhttpClient;
-                    }
-                }
-            }
-            return internalClient;
-        }
-
-        /**
-         * Constructor for a new Factory that runs requests using a static singleton client.
-         */
-        public Factory() {
-            this(getInternalClient());
-        }
-
-        /**
-         * Constructor for a new Factory that runs requests using given client.
-         *
-         * @param client this is typically an instance of {@code OkHttpClient}.
-         */
-        public Factory(Call.Factory client) {
-            this.client = client;
-        }
 
         @Override
         public ModelLoader<GlideUrl, InputStream> build(MultiModelLoaderFactory multiFactory) {
-            return new OkHttpUrlLoader(client);
+            return new OkHttpUrlLoader();
         }
 
         @Override
