@@ -116,7 +116,6 @@ public class HttpModule {
 
 
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
-        Logger.i(client.toString());
         return builder
                 .baseUrl(url)
                 .client(client)

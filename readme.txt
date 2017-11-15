@@ -18,3 +18,6 @@ http://blog.csdn.net/qiujuer/article/details/44195131
 
     //统一adapte
     https://github.com/pinguo-zhouwei/CustomAdapter
+
+    布局解析
+    http://android.lineten.net/layout.php

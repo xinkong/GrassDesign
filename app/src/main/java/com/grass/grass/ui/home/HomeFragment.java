@@ -26,9 +26,6 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
     @BindView(R.id.text3)
     ImageView mText3;
 
-    @Inject
-    public OkHttpClient mOkHttpClient;
-
     public static HomeFragment getInstance() {
         return new HomeFragment();
     }
@@ -60,7 +57,6 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
 
     @Override
     public void onFragmentStart() {
-        Logger.i(mOkHttpClient.toString());
         //设置menu
         getToolbar().inflateMenu(R.menu.menu_add_msg);
 
