@@ -21,3 +21,5 @@ http://blog.csdn.net/qiujuer/article/details/44195131
 
     布局解析
     http://android.lineten.net/layout.php
+
+    https://github.com/open-android/Android
