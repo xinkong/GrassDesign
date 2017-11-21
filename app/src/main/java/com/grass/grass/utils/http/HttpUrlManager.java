@@ -2,6 +2,7 @@ package com.grass.grass.utils.http;
 
 
 import com.grass.grass.entity.BaseEntity;
+import com.grass.grass.entity.MsgInfoEntity;
 import com.grass.grass.entity.UserEntity;
 
 import java.util.List;
@@ -64,4 +65,12 @@ public interface HttpUrlManager {
      */
     @POST("/msgInfo/saveMsg")
     Flowable<BaseEntity<String>> sendMsg(@Body Map<String,String> params);
+
+    /**
+     *
+     * @param parmsg
+     * @return
+     */
+    @GET("/msgInfo/findMsg")
+    Flowable<BaseEntity<List<MsgInfoEntity>>> getMsg(@QueryMap Map<String,String> parmsg);
 }

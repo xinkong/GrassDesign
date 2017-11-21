@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:orientation="horizontal"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="@dimen/length10">
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:padding="10dp"/>
-
-    <CheckBox
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/userHeadPic"
+            android:layout_width="@dimen/length30"
+            android:layout_height="@dimen/length30"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/length10"
+            android:singleLine="true"
+            android:text="aldsfa"
+            android:layout_toRightOf="@id/userHeadPic"
+            android:textColor="@color/col333"
+            android:layout_marginTop="@dimen/length4"
+            android:textSize="@dimen/length16"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/userName"
+            android:text="alksjdflasd"
+            android:textColor="@color/col333"
+            android:layout_below="@id/userName"/>
+
+        <com.grass.grass.view.MultiImageView
+            android:id="@+id/images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/content"
+            android:layout_below="@id/content"
+            android:layout_marginTop="@dimen/length8"
+            />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -3,15 +3,18 @@ package com.grass.grass.ui.home;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grass.grass.R;
 import com.grass.grass.base.BaseMVPFragment;
 import com.grass.grass.contract.home.Home;
+import com.grass.grass.entity.MsgInfoEntity;
 import com.grass.grass.presenter.home.HomePersenter;
 import com.grass.grass.ui.adapter.base.BaseQuickAdapter;
 import com.grass.grass.ui.adapter.base.BaseViewHolder;
 import com.grass.grass.utils.AppUtils;
+import com.grass.grass.view.MultiImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,31 +63,35 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
         getToolbar().inflateMenu(R.menu.menu_add_msg);
 
         initView();
+        showLoadingView("正在加载中...");
+        mPresenter.loadData(0,10);
 
     }
 
     private void initView() {
         mList.setLayoutManager(new LinearLayoutManager(mContext()));
-        mAdapter = new BaseQuickAdapter<String>(mContext(),R.layout.item_home_list) {
+        mAdapter = new BaseQuickAdapter<MsgInfoEntity>(mContext(),R.layout.item_home_list) {
             @Override
-            public void convert(BaseViewHolder viewHolder, String data, int position) {
-                TextView test = viewHolder.getView(R.id.test);
-                test.setText(data);
+            public void convert(BaseViewHolder viewHolder, MsgInfoEntity data, int position) {
+                TextView userName = viewHolder.getView(R.id.userName);
+                TextView content = viewHolder.getView(R.id.content);
+                MultiImageView images = viewHolder.getView(R.id.images);
+
+                userName.setText(data.userInfo.userName);
+                content.setText(data.msgContent);
+                ArrayList<String> thumbnaiUrl = new ArrayList<>();
+                //有后台保证data.imagesInfo不为空
+                for (MsgInfoEntity.ImagesInfo infos : data.imagesInfo){
+                    thumbnaiUrl.add(infos.imagemThumbnailUrl);
+                }
+                images.setList(thumbnaiUrl);
+
             }
         };
         mList.setAdapter(mAdapter);
-        mAdapter.setOnRecylyViewItemClickListener(position -> AppUtils.toast(mContext(),position+""));
-        mAdapter.addAll(getDatas());
+//        mAdapter.setOnRecylyViewItemClickListener(position -> AppUtils.toast(mContext(),position+""));
     }
 
-
-    private List<String> getDatas() {
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            data.add("条目" + i);
-        }
-        return data;
-    }
 
     @Override
     public void onItemMenuClick(MenuItem item) {
@@ -93,4 +100,14 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
     }
 
 
+    @Override
+    public void loadDataOk(List<MsgInfoEntity> msgInfoEntity) {
+        mAdapter.addAll(msgInfoEntity);
+    }
+
+    @Override
+    public void onRetry() {
+        super.onRetry();
+        mPresenter.loadData(0,10);
+    }
 }

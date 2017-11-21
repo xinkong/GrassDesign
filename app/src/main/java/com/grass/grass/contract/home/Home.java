@@ -2,6 +2,9 @@ package com.grass.grass.contract.home;
 
 import com.grass.grass.base.BasePresenter;
 import com.grass.grass.base.BaseView;
+import com.grass.grass.entity.MsgInfoEntity;
+
+import java.util.List;
 
 /**
  * Created by huchao on 2017/10/31.
@@ -10,11 +13,11 @@ import com.grass.grass.base.BaseView;
 public interface Home {
 
     interface HomeView extends BaseView{
-        void loadSuccess();
+        void loadDataOk(List<MsgInfoEntity> msgInfoEntity);
     }
 
     interface HomeContract extends BasePresenter<HomeView>{
-        void loadData();
+        void loadData(int pageIndex,int pageSize);
     }
 
 }

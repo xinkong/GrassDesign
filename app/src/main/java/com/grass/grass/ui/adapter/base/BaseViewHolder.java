@@ -10,21 +10,13 @@ import android.widget.TextView;
 
 import com.grass.grass.utils.ImageLoadUtils;
 
-
-/**
- * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
- */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    /**
-     * Views indexed with their IDs
-     */
     private final SparseArray<View> views;
 
     public BaseViewHolder(final View view) {
         super(view);
         this.views = new SparseArray<>();
-
     }
 
     @SuppressWarnings("unchecked")
