@@ -108,6 +108,7 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
     @Override
     public void onRetry() {
         super.onRetry();
+        showLoadingView("正在加载中...");
         mPresenter.loadData(0,10);
     }
 }

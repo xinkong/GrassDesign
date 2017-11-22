@@ -3,10 +3,12 @@ package com.grass.grass.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -17,6 +19,8 @@ import com.bumptech.glide.request.target.Target;
 import com.grass.grass.R;
 import com.grass.grass.utils.glide.GlideApp;
 import com.grass.grass.utils.glide.GlideRoundTransform;
+
+import java.io.File;
 
 import io.reactivex.Flowable;
 
@@ -113,24 +117,6 @@ public class ImageLoadUtils {
 
     }
 
-    /**
-     * 加载网络图片
-     *
-     * @param context
-     * @param url
-     * @param imageView
-     */
-//    public void loadImage(Context context, String url, ImageView imageView) {
-//        if (checkActivityIsDestroyed(imageView)){
-//            return;
-//        }
-//        GlideApp.with(context).load(url)
-//                .placeholder(R.mipmap.default_img)
-//                .error(R.mipmap.default_img)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(imageView);
-//
-//    }
 
     /**
      * 加载圆形图片
@@ -174,4 +160,19 @@ public class ImageLoadUtils {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
+
+    /**
+     * 加载本地图片
+     * @param path
+     * @param imageView
+     */
+    public void loadLocaltionPic(String path,ImageView imageView){
+        GlideApp.with(imageView.getContext())          //配置上下文
+                .load(Uri.fromFile(new File(path)))    //设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
+                .error(R.mipmap.default_img)           //设置错误图片
+                .placeholder(R.mipmap.default_img)     //设置占位图片
+                .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                .into(imageView);
+    }
+
 }

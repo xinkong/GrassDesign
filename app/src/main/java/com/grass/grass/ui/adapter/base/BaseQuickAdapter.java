@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<T> mDatas;
-    private Context mContext;
+    protected Context mContext;
     private LayoutInflater mLayoutInflater;
     private int mItemLayoutIds;
 
@@ -52,6 +52,15 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<BaseViewH
     public void addAll(List<T> datas){
         this.mDatas.addAll(datas);
         notifyDataSetChanged();
+    }
+
+    public void add(T data){
+        this.mDatas.add(data);
+        notifyDataSetChanged();
+    }
+
+    public T getData(int position){
+        return mDatas.get(position);
     }
 
     public void removeItem(int position){

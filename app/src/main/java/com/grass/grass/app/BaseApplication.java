@@ -63,36 +63,11 @@ public class BaseApplication extends Application {
         if (!BuildConfig.DEBUG) {
             initBugly();
         }
-
-
-        //用于Glide加载图片使用
-        initOkhttp();
-
         instance = this;
-
         //初始化屏幕宽高
         getScreenSize();
 
         initLogger();
-
-
-    }
-
-    public static OkHttpClient mOkhttpClient;
-
-    private void initOkhttp() {
-
-        mOkhttpClient = new OkHttpClient.Builder()
-                .connectTimeout(1000, TimeUnit.MILLISECONDS)
-                .readTimeout(1000, TimeUnit.MILLISECONDS)
-                .hostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                })
-                .build();
-
     }
 
 

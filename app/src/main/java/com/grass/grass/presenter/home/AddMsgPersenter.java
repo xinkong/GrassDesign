@@ -42,6 +42,9 @@ public class AddMsgPersenter extends RxPresenter<AddMsg.AddMsgView> implements A
                                 List<MultipartBody.Part> parts = new ArrayList<>();
                                 for (int i = 0; i < paths.size(); i++) {
                                     File file = new File(paths.get(i));
+                                    if(!file.exists()){
+                                        continue;
+                                    }
                                     RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                                     MultipartBody.Part body = MultipartBody.Part.createFormData("file" + i, file.getName(), requestFile);
                                     parts.add(body);
