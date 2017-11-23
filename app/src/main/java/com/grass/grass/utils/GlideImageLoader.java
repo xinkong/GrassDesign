@@ -3,7 +3,8 @@ package com.grass.grass.utils;
 import android.app.Activity;
 import android.widget.ImageView;
 
-import com.lzy.imagepicker.loader.ImageLoader;
+import com.grass.imagepicker.loader.ImageLoader;
+
 
 public class GlideImageLoader implements ImageLoader {
 

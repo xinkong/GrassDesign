@@ -1,8 +1,13 @@
 https://issues.sonatype.org/login.jsp
 用户名:chao_
 密码:01897jt@XINKONG
-打aar包的方法
-http://blog.csdn.net/qiujuer/article/details/44195131
+
+jcenter
+地址
+https://bintray.com/
+用户名
+xinkongc
+
 
 学习的资源
 

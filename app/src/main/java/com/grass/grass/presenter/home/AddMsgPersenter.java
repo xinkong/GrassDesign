@@ -5,7 +5,6 @@ import com.grass.grass.base.CommonSubscriber;
 import com.grass.grass.base.RxPresenter;
 import com.grass.grass.contract.login.AddMsg;
 import com.grass.grass.entity.BaseEntity;
-import com.grass.grass.entity.SendMsgInfo;
 import com.grass.grass.utils.RxUtil;
 import com.grass.grass.utils.SharePrefsUtils;
 import com.grass.grass.utils.http.HttpUrlManager;
