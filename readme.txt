@@ -1,6 +1,3 @@
-https://issues.sonatype.org/login.jsp
-用户名:chao_
-密码:01897jt@XINKONG
 
 jcenter
 地址
