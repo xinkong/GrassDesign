@@ -25,9 +25,9 @@ public interface AppComponent {
     HttpUrlManager getHttpUrlManager();
 
 
-
     //==============================单列注入===================
     OkHttpClient getOkHttpClient();
+
     //注册单列OkHttpClient
     void injectOkHttpClient(OkHttpUrlLoader okHttpUrlLoader);
 

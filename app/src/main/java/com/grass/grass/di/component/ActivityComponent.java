@@ -29,5 +29,4 @@ public interface ActivityComponent {
     void inject(RegisterActivity loginActivity);
 
     void inject(AddMsgActivity addMsgActivity);
-
 }
