@@ -33,6 +33,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
                         //保存用户信息
                         SharePrefsUtils.getInstance().putString(Constants.UserId,userEntity.userId+"");
                         SharePrefsUtils.getInstance().putString(Constants.UserName,userEntity.userName);
+                        SharePrefsUtils.getInstance().putString(Constants.UserHeadUrl,userEntity.userHeadPic);
                         mView.loginSuccess();
                     }
                 }));

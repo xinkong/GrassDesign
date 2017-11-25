@@ -21,6 +21,7 @@ public interface Constants {
 
     String UserName = "UserName";
     String UserId = "UserId";
+    String UserHeadUrl = "UserHeadUrl";
 
 
     //================= PATH ====================
@@ -32,5 +33,11 @@ public interface Constants {
     String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "codeest" + File.separator + "GeekNews";
 
     //================= PREFERENCE ====================
+
+    //================= RxBus Key ==============
+    interface RxBusKeyMap{
+        String SendMsgOk = "SENDMSGOK";
+    }
+    //================= RxBus Key ==============
 
 }

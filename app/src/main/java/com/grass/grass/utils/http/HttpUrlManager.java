@@ -7,6 +7,7 @@ import com.grass.grass.entity.UserEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Manifest;
 
 import io.reactivex.Flowable;
 import okhttp3.MultipartBody;
@@ -67,10 +68,18 @@ public interface HttpUrlManager {
     Flowable<BaseEntity<String>> sendMsg(@Body Map<String,String> params);
 
     /**
-     *
+     * 获取所与消息
      * @param parmsg
      * @return
      */
     @GET("/msgInfo/findMsg")
     Flowable<BaseEntity<List<MsgInfoEntity>>> getMsg(@QueryMap Map<String,String> parmsg);
+
+    /**
+     * 更新用户信息
+     * @param params
+     * @return
+     */
+    @GET("/userInfo/updateUserInfo")
+    Flowable<BaseEntity<UserEntity>> updateUserInfo(@QueryMap Map<String,String> params);
 }

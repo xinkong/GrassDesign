@@ -1,5 +1,6 @@
 package com.grass.grass.ui.home;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,16 +9,20 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.grass.grass.R;
+import com.grass.grass.app.Constants;
 import com.grass.grass.base.BaseMvpActivity;
+import com.grass.grass.base.RxPresenter;
 import com.grass.grass.contract.login.AddMsg;
 import com.grass.grass.presenter.home.AddMsgPersenter;
 import com.grass.grass.ui.adapter.AddMsgSelPicAdapter;
 import com.grass.grass.utils.AppUtils;
 import com.grass.grass.utils.GlideImageLoader;
+import com.grass.grass.utils.RxBus;
 import com.grass.imagepicker.ImagePicker;
 import com.grass.imagepicker.bean.ImageItem;
 import com.grass.imagepicker.ui.ImageGridActivity;
 import com.grass.imagepicker.ui.ImagePreviewDelActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +75,20 @@ public class AddMsgActivity extends BaseMvpActivity<AddMsgPersenter> implements 
             String path = mAdapter.getData(position);
             if (AddMsgSelPicAdapter.defaultPic.equals(path)) {
                 AppUtils.hideSoftInput(this);
-                ImagePicker.getInstance().setSelectLimit(mMaxSelPic-mImagePaths.size());
-                Intent intent = new Intent(this, ImageGridActivity.class);
+                //权限判断
+                new RxPermissions(this)
+                        .request(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .subscribe(granted ->{
+                            if(granted){//所有权限都同意了
+                                ImagePicker.getInstance().setSelectLimit(mMaxSelPic-mImagePaths.size());
+                                Intent intent = new Intent(this, ImageGridActivity.class);
 //                intent.putExtra(ImageGridActivity.EXTRAS_IMAGES,images);
-                startActivityForResult(intent, REQUEST_CODE_SELECT);
+                                startActivityForResult(intent, REQUEST_CODE_SELECT);
+                            }else {
+                                AppUtils.toast(this,"请打开所需要的权限");
+                            }
+                        });
+
             }else {
                 //打开预览
                 Intent intentPreview = new Intent(this, ImagePreviewDelActivity.class);
@@ -134,6 +149,7 @@ public class AddMsgActivity extends BaseMvpActivity<AddMsgPersenter> implements 
     @Override
     public void sendSuccess() {
         AppUtils.toast(mContext(), "发送成功");
+        RxBus.get().post(Constants.RxBusKeyMap.SendMsgOk);
         finish();
     }
 

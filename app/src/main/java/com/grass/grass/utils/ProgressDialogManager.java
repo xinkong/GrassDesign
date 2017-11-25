@@ -1,5 +1,6 @@
 package com.grass.grass.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -35,8 +36,14 @@ public class ProgressDialogManager {
     }
 
     public void showWait(Context context, String content) {
-        mDialog = new CustomProgressDialog(context, content);
-        mDialog.show();
+        if (context != null && !((Activity) context).isDestroyed()) {
+            if (mDialog == null) {
+                mDialog = new CustomProgressDialog(context, content);
+            }
+            if (!mDialog.isShowing()){
+                mDialog.show();
+            }
+        }
 
     }
 

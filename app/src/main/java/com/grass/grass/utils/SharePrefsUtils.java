@@ -19,7 +19,7 @@ public class SharePrefsUtils {
     /**
      * Preference文件名
      */
-    private static final String SHARE_PREFREENCE_NAME = "ytoStation.pre";
+    private static final String SHARE_PREFREENCE_NAME = "GrassDesign.pre";
 
     /**
      * 初始化sp和edit

@@ -140,7 +140,7 @@ public class MultiImageView extends LinearLayout {
         }
 
         //显示一样大小的图片第一个条件一直是false就行了
-        if (imagesList.size() == 1) {
+        if (false && imagesList.size() == 1) {
             addView(createImageView(0, false));
         } else {
             int allCount = imagesList.size();

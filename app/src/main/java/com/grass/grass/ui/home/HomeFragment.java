@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grass.grass.R;
+import com.grass.grass.app.Constants;
 import com.grass.grass.base.BaseMVPFragment;
 import com.grass.grass.contract.home.Home;
 import com.grass.grass.entity.MsgInfoEntity;
@@ -14,6 +15,7 @@ import com.grass.grass.presenter.home.HomePersenter;
 import com.grass.grass.ui.adapter.base.BaseQuickAdapter;
 import com.grass.grass.ui.adapter.base.BaseViewHolder;
 import com.grass.grass.utils.AppUtils;
+import com.grass.grass.utils.RxBus;
 import com.grass.grass.view.MultiImageView;
 
 import java.util.ArrayList;
@@ -65,7 +67,11 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
         initView();
         showLoadingView("正在加载中...");
         mPresenter.loadData(0,10);
-
+        RxBus.get().toFlowable().subscribe(type->{
+            if(Constants.RxBusKeyMap.SendMsgOk.equals(type)){
+                mPresenter.loadData(0,10);
+            }
+        });
     }
 
     private void initView() {
@@ -102,6 +108,7 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
 
     @Override
     public void loadDataOk(List<MsgInfoEntity> msgInfoEntity) {
+        mAdapter.clear();
         mAdapter.addAll(msgInfoEntity);
     }
 
