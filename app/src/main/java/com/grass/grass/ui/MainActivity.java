@@ -47,6 +47,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
         return R.layout.activity_main;
     }
 
+    private MyInfoFragment mMyInfoFragment = MyInfoFragment.getInstance();
+
     @Override
     public void onActivityStart() {
 
@@ -55,7 +57,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
         fragments = new ArrayList<>(4);
         fragments.add(HomeFragment.getInstance());
-        fragments.add(MyInfoFragment.getInstance());
+        fragments.add(mMyInfoFragment);
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(), fragments));
 
@@ -71,6 +73,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 //                    mBottomBar.getTabAtPosition(1).setBadgeCount(new Random().nextInt(100));
 //                    mBottomBar.getTabAtPosition(1).removeBadge();
                     mViewPager.setCurrentItem(1, false);
+                    mMyInfoFragment.onPageSelInit();
                     break;
             }
         });

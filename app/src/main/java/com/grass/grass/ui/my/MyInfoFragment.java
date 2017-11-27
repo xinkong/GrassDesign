@@ -88,8 +88,8 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
     @Override
     public void onFragmentStart() {
         
-        initImagePick();
-        mCacheSize.setText("缓存文件:"+ CacheUtils.getCacheSize(Constants.PATH_DATA));
+//        initImagePick();
+
         mCacheSize.setOnClickListener(view -> cleanCache());
         mUserName.setText(SharePrefsUtils.getInstance().getString(Constants.UserName,""));
         mExitLogin.setOnClickListener(view -> exit());
@@ -101,6 +101,11 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
         CacheUtils.deleteFolderFile(Constants.PATH_DATA,false);
         mCacheSize.setText("缓存文件:"+ CacheUtils.getCacheSize(Constants.PATH_DATA));
         AppUtils.toast(mContext(),"缓存清理成功");
+    }
+
+    public void onPageSelInit(){
+        mCacheSize.setText("缓存文件:"+ CacheUtils.getCacheSize(Constants.PATH_DATA));
+        initImagePick();
     }
 
     private void initImagePick() {
@@ -116,7 +121,7 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
 //        imagePicker.setOutPutX(1000);                         //保存文件的宽度。单位像素
 //        imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
 
-        imagePicker.clear();
+//        imagePicker.clear();
     }
 
     private SelectDialog showDialog(SelectDialog.SelectDialogListener listener, List<String> names) {
@@ -154,7 +159,6 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
                 startActivityForResult(intent, REQUEST_CODE_SELECT);
                 break;
             case 1:
-
                 Intent intent1 = new Intent(mContext(), ImageGridActivity.class);
                 startActivityForResult(intent1, REQUEST_CODE_SELECT);
                 break;
