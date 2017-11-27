@@ -141,14 +141,31 @@ public class ImageLoadUtils {
     }
 
     /**
+     * 加载圆形图片
+     *
+     * @param url
+     * @param imageView
+     */
+    public void loadCircleImage(String url, int defalutPic,ImageView imageView) {
+        if (checkActivityIsDestroyed(imageView)){
+            return;
+        }
+        GlideApp.with(imageView.getContext()).load(url)
+                .placeholder(defalutPic)
+                .error(defalutPic)
+                .apply(RequestOptions.circleCropTransform())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+    }
+
+    /**
      * 加载圆角图片
      *
-     * @param context
      * @param url
      * @param dp
      * @param imageView
      */
-    public void loadRoundedImage(Context context, String url, int dp, ImageView imageView) {
+    public void loadRoundedImage(String url, int dp, ImageView imageView) {
         if (checkActivityIsDestroyed(imageView)){
             return;
         }
@@ -156,7 +173,7 @@ public class ImageLoadUtils {
                 .centerCrop()
                 .priority(Priority.HIGH)
                 .transform(new GlideRoundTransform(dp));
-        GlideApp.with(context)
+        GlideApp.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.mipmap.default_img)
                 .error(R.mipmap.default_img)

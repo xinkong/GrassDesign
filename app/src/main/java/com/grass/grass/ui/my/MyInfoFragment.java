@@ -21,6 +21,7 @@ import com.grass.grass.entity.UserEntity;
 import com.grass.grass.presenter.my.MyInfoPersenter;
 import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.utils.AppUtils;
+import com.grass.grass.utils.CacheUtils;
 import com.grass.grass.utils.GlideImageLoader;
 import com.grass.grass.utils.ImageLoadUtils;
 import com.grass.grass.utils.SharePrefsUtils;
@@ -47,6 +48,8 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
 
     @BindView(R.id.userName)
     TextView mUserName;
+    @BindView(R.id.cacheSize)
+    MyPressView mCacheSize;
     @BindView(R.id.exitLogin)
     MyPressView mExitLogin;
     @BindView(R.id.headPic)
@@ -86,11 +89,18 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
     public void onFragmentStart() {
         
         initImagePick();
-        
+        mCacheSize.setText("缓存文件:"+ CacheUtils.getCacheSize(Constants.PATH_DATA));
+        mCacheSize.setOnClickListener(view -> cleanCache());
         mUserName.setText(SharePrefsUtils.getInstance().getString(Constants.UserName,""));
         mExitLogin.setOnClickListener(view -> exit());
-        ImageLoadUtils.getInstance().loadCircleImage(SharePrefsUtils.getInstance().getString(Constants.UserHeadUrl,""),mHeadPic);
+        ImageLoadUtils.getInstance().loadCircleImage(SharePrefsUtils.getInstance().getString(Constants.UserHeadUrl,""),R.mipmap.my_default_head_image,mHeadPic);
         mHeadPic.setOnClickListener(view ->changeHeadPic());
+    }
+
+    private void cleanCache() {
+        CacheUtils.deleteFolderFile(Constants.PATH_DATA,false);
+        mCacheSize.setText("缓存文件:"+ CacheUtils.getCacheSize(Constants.PATH_DATA));
+        AppUtils.toast(mContext(),"缓存清理成功");
     }
 
     private void initImagePick() {
@@ -173,6 +183,6 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
 
     @Override
     public void updateUserHeadOk() {
-        ImageLoadUtils.getInstance().loadCircleImage(SharePrefsUtils.getInstance().getString(Constants.UserHeadUrl,""),mHeadPic);
+        ImageLoadUtils.getInstance().loadCircleImage(SharePrefsUtils.getInstance().getString(Constants.UserHeadUrl,""),R.mipmap.my_default_head_image,mHeadPic);
     }
 }
