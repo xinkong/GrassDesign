@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/userName"
+            android:textSize="@dimen/length16"
             android:text="alksjdflasd"
             android:textColor="@color/col333"
             android:layout_below="@id/userName"/>
@@ -46,6 +47,20 @@
             android:layout_below="@id/content"
             android:layout_marginTop="@dimen/length8"
             />
+
+        <TextView
+            android:id="@+id/createTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/images"
+            android:gravity="right"
+            android:textSize="@dimen/length14"
+            android:layout_alignLeft="@id/images"
+            android:layout_marginTop="@dimen/length2"
+            android:textColor="@color/col666"
+            android:text="adsfada"/>
+
+
     </RelativeLayout>
 
 </LinearLayout>

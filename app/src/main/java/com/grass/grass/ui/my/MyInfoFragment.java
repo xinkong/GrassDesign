@@ -114,10 +114,10 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
         imagePicker.setShowCamera(true);                        //显示拍照按钮
         imagePicker.setMultiMode(false);                        //设置单选模式
         imagePicker.setCrop(true);                              //允许裁剪（单选才有效）
-        imagePicker.setSaveRectangle(true);                     //是否按矩形区域保存
-        imagePicker.setStyle(CropImageView.Style.RECTANGLE);    //裁剪框的形状
-        imagePicker.setFocusWidth(BaseApplication.SCREEN_WIDTH);                       //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setFocusHeight((int) (BaseApplication.SCREEN_WIDTH/1.8));                      //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setSaveRectangle(false);                     //是否按矩形区域保存
+        imagePicker.setStyle(CropImageView.Style.CIRCLE);    //裁剪框的形状
+        imagePicker.setFocusWidth(BaseApplication.SCREEN_WIDTH/2);                       //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight((BaseApplication.SCREEN_WIDTH/2));                      //裁剪框的高度。单位像素（圆形自动取宽高最小值）
 //        imagePicker.setOutPutX(1000);                         //保存文件的宽度。单位像素
 //        imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
 
@@ -159,6 +159,7 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
                 startActivityForResult(intent, REQUEST_CODE_SELECT);
                 break;
             case 1:
+//                ImagePicker.getInstance().setShowCamera(false);
                 Intent intent1 = new Intent(mContext(), ImageGridActivity.class);
                 startActivityForResult(intent1, REQUEST_CODE_SELECT);
                 break;

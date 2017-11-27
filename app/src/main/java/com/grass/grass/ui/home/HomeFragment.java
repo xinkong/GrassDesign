@@ -82,6 +82,7 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
                 TextView userName = viewHolder.getView(R.id.userName);
                 TextView content = viewHolder.getView(R.id.content);
                 MultiImageView images = viewHolder.getView(R.id.images);
+                TextView createTime = viewHolder.getView(R.id.createTime);
 
                 userName.setText(data.userInfo.userName);
                 content.setText(data.msgContent);
@@ -92,6 +93,7 @@ public class HomeFragment extends BaseMVPFragment<HomePersenter> implements Home
                 }
                 images.setList(thumbnaiUrl);
 
+                createTime.setText("时间:"+data.createTime);
             }
         };
         mList.setAdapter(mAdapter);

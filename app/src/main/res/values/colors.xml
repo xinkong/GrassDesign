@@ -9,5 +9,6 @@
     <color name="black">#2d2d2d</color>
     <color name="color_main_background">#F6F6F6</color>
     <color name="col333">#333333</color>
+    <color name="col666">#666666</color>
     <color name="blue">#33b5e5</color>
 </resources>
