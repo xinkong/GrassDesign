@@ -43,6 +43,16 @@
         android:textColor="#ffffff"
         app:mPressBackGoroundColor="@color/colorPrimary"
         app:mPressBackGoroundColorSelected="#3C3779"/>
+    <com.grass.grass.view.MyPressView
+        android:id="@+id/setting"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/length10"
+        android:text="设置"
+        android:textColor="#ffffff"
+        app:mPressBackGoroundColor="@color/colorPrimary"
+        app:mPressBackGoroundColorSelected="#3C3779"/>
 
     <com.grass.grass.view.MyPressView
         android:id="@+id/exitLogin"

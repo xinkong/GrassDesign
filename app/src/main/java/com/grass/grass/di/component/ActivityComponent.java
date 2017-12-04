@@ -9,6 +9,7 @@ import com.grass.grass.ui.home.AddMsgActivity;
 import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.ui.login.RegisterActivity;
+import com.grass.grass.ui.my.SettingActivity;
 
 import dagger.Component;
 
@@ -29,4 +30,6 @@ public interface ActivityComponent {
     void inject(RegisterActivity loginActivity);
 
     void inject(AddMsgActivity addMsgActivity);
+
+    void inject(SettingActivity settingActivity);
 }

@@ -28,10 +28,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--配置glide-->
+        <!-- 配置glide -->
         <meta-data
             android:name="com.grass.grass.utils.glide.OkHttpGlideModule"
-            android:value="GlideModule" />
+            android:value="GlideModule"/>
         <!-- Bugly升级SDK配置开始 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
@@ -57,11 +57,19 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.login.RegisterActivity">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.login.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.home.AddMsgActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.home.AddMsgActivity">
+        <activity android:name=".ui.my.SettingActivity">
         </activity>
     </application>
 

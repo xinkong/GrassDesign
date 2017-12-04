@@ -16,10 +16,13 @@ import com.grass.grass.di.component.AppComponent;
 import com.grass.grass.di.component.DaggerAppComponent;
 import com.grass.grass.di.module.AppModule;
 import com.grass.grass.di.module.HttpModule;
+import com.grass.grass.utils.GlideImageLoader;
+import com.grass.imagepicker.ImagePicker;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
@@ -27,13 +30,6 @@ import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
-import okhttp3.OkHttpClient;
 
 /**
  * Created by huchao on 2017/10/16.
@@ -67,7 +63,16 @@ public class BaseApplication extends Application {
         //初始化屏幕宽高
         getScreenSize();
 
+        initSelPic();
+
         initLogger();
+
+        LeakCanary.install(this);
+    }
+
+    private void initSelPic() {
+        ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new GlideImageLoader());     //设置图片加载器
     }
 
 

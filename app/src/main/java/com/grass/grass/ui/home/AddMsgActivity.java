@@ -29,10 +29,12 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.grass.grass.app.Constants.RequestCode.REQUEST_CODE_PREVIEW;
+import static com.grass.grass.app.Constants.RequestCode.REQUEST_CODE_SELECT;
+
 public class AddMsgActivity extends BaseMvpActivity<AddMsgPersenter> implements AddMsg.AddMsgView {
 
-    public static final int REQUEST_CODE_SELECT = 100;
-    public static final int REQUEST_CODE_PREVIEW = 101;
+
 
     @BindView(R.id.sendContent)
     EditText mSendContent;
@@ -103,7 +105,7 @@ public class AddMsgActivity extends BaseMvpActivity<AddMsgPersenter> implements 
     private void initImagePick() {
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setMultiMode(true);                        //设置多选
-        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
+//        imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);                      //显示拍照按钮
         imagePicker.setCrop(false);                           //允许裁剪（单选才有效）
         imagePicker.setSelectLimit(mMaxSelPic);              //选中数量限制

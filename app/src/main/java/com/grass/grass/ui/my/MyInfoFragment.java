@@ -4,25 +4,19 @@ package com.grass.grass.ui.my;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.grass.grass.R;
 import com.grass.grass.app.BaseApplication;
 import com.grass.grass.app.Constants;
 import com.grass.grass.base.BaseMVPFragment;
 import com.grass.grass.contract.my.MyInfo;
-import com.grass.grass.entity.UserEntity;
 import com.grass.grass.presenter.my.MyInfoPersenter;
 import com.grass.grass.ui.login.LoginActivity;
 import com.grass.grass.utils.AppUtils;
 import com.grass.grass.utils.CacheUtils;
-import com.grass.grass.utils.GlideImageLoader;
 import com.grass.grass.utils.ImageLoadUtils;
 import com.grass.grass.utils.SharePrefsUtils;
 import com.grass.grass.view.MyPressView;
@@ -31,7 +25,6 @@ import com.grass.imagepicker.ImagePicker;
 import com.grass.imagepicker.bean.ImageItem;
 import com.grass.imagepicker.ui.ImageGridActivity;
 import com.grass.imagepicker.view.CropImageView;
-import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
@@ -39,7 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.grass.grass.ui.home.AddMsgActivity.REQUEST_CODE_SELECT;
+import static com.grass.grass.app.Constants.RequestCode.REQUEST_CODE_SELECT;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +45,8 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
     MyPressView mCacheSize;
     @BindView(R.id.exitLogin)
     MyPressView mExitLogin;
+    @BindView(R.id.setting)
+    MyPressView mSetting;
     @BindView(R.id.headPic)
     ImageView mHeadPic;
 
@@ -95,6 +90,7 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
         mExitLogin.setOnClickListener(view -> exit());
         ImageLoadUtils.getInstance().loadCircleImage(SharePrefsUtils.getInstance().getString(Constants.UserHeadUrl,""),R.mipmap.my_default_head_image,mHeadPic);
         mHeadPic.setOnClickListener(view ->changeHeadPic());
+        mSetting.setOnClickListener(view -> AppUtils.jump(mContext(),SettingActivity.class));
     }
 
     private void cleanCache() {
@@ -110,7 +106,7 @@ public class MyInfoFragment extends BaseMVPFragment<MyInfoPersenter> implements 
 
     private void initImagePick() {
         ImagePicker imagePicker = ImagePicker.getInstance();
-        imagePicker.setImageLoader(new GlideImageLoader());     //设置图片加载器
+//        imagePicker.setImageLoader(new GlideImageLoader());     //设置图片加载器
         imagePicker.setShowCamera(true);                        //显示拍照按钮
         imagePicker.setMultiMode(false);                        //设置单选模式
         imagePicker.setCrop(true);                              //允许裁剪（单选才有效）

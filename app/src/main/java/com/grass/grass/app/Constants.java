@@ -35,9 +35,13 @@ public interface Constants {
     //================= PREFERENCE ====================
 
     //================= RxBus Key ==============
-    interface RxBusKeyMap{
+    interface RxBusKeyMap {
         String SendMsgOk = "SENDMSGOK";
     }
     //================= RxBus Key ==============
 
+    interface RequestCode {
+        int REQUEST_CODE_SELECT = 100;
+        int REQUEST_CODE_PREVIEW = 101;
+    }
 }
