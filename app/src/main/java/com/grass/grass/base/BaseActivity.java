@@ -1,6 +1,7 @@
 package com.grass.grass.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -131,6 +132,32 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         mEmptyView = (RelativeLayout) findViewById(R.id.layout_empty);
         mTvEmptyMsg = (TextView) findViewById(R.id.emptyView_tv_hintMsg);
+    }
+
+    /**
+     * 设置进入 动画
+     * @param intent
+     */
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+    }
+    /**
+     * 设置退出 动画
+     */
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_right);
+
     }
 
     @Override
