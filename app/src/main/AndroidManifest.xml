@@ -59,16 +59,9 @@
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.login.RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.home.AddMsgActivity"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.login.RegisterActivity"/>
+        <activity android:name=".ui.home.AddMsgActivity"/>
         <activity android:name=".ui.my.SettingActivity">
         </activity>
     </application>

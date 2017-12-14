@@ -1,6 +1,5 @@
 package com.grass.grass.ui.login;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -11,10 +10,9 @@ import com.grass.grass.entity.UserEntity;
 import com.grass.grass.presenter.login.RegisterPresenter;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.utils.AppUtils;
-import com.grass.grass.view.MyPressView;
+import com.grass.views.MyPressView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RegisterActivity extends BaseMvpActivity<RegisterPresenter> implements Register.RegisterView {
 
@@ -47,9 +45,11 @@ public class RegisterActivity extends BaseMvpActivity<RegisterPresenter> impleme
         String userpwd = mUserPwd.getText().toString();
         if (TextUtils.isEmpty(username)) {
             AppUtils.toast(mContext(), "用户名不能为空");
+            return;
         }
         if (TextUtils.isEmpty(userpwd)) {
             AppUtils.toast(mContext(), "密码不能为空");
+            return;
         }
         UserEntity userEntity = new UserEntity();
         userEntity.userName = username;

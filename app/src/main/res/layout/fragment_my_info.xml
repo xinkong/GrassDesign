@@ -33,7 +33,7 @@
 
         </LinearLayout>
 
-    <com.grass.grass.view.MyPressView
+    <com.grass.views.MyPressView
         android:id="@+id/cacheSize"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:textColor="#ffffff"
         app:mPressBackGoroundColor="@color/colorPrimary"
         app:mPressBackGoroundColorSelected="#3C3779"/>
-    <com.grass.grass.view.MyPressView
+    <com.grass.views.MyPressView
         android:id="@+id/setting"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         app:mPressBackGoroundColor="@color/colorPrimary"
         app:mPressBackGoroundColorSelected="#3C3779"/>
 
-    <com.grass.grass.view.MyPressView
+    <com.grass.views.MyPressView
         android:id="@+id/exitLogin"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

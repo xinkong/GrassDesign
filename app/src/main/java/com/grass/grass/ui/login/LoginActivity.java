@@ -11,7 +11,7 @@ import com.grass.grass.contract.LoginContract;
 import com.grass.grass.presenter.login.LoginPresenter;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.utils.AppUtils;
-import com.grass.grass.view.MyPressView;
+import com.grass.views.MyPressView;
 
 import butterknife.BindView;
 

@@ -19,12 +19,12 @@ import com.grass.grass.utils.AppUtils;
 import com.grass.grass.utils.CacheUtils;
 import com.grass.grass.utils.ImageLoadUtils;
 import com.grass.grass.utils.SharePrefsUtils;
-import com.grass.grass.view.MyPressView;
 import com.grass.grass.view.SelectDialog;
 import com.grass.imagepicker.ImagePicker;
 import com.grass.imagepicker.bean.ImageItem;
 import com.grass.imagepicker.ui.ImageGridActivity;
 import com.grass.imagepicker.view.CropImageView;
+import com.grass.views.MyPressView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;

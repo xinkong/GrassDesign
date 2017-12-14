@@ -1,6 +1,7 @@
 package com.grass.grass.base;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -53,6 +55,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //保持竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if(isCanSwipeToDismiss()){
+            requestWindowFeature(Window.FEATURE_SWIPE_TO_DISMISS);
+        }
         setContentView(R.layout.base_view);
         BaseApplication.getInstance().addActivity(this);
 
@@ -73,6 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else {
             mToolbar.setVisibility(View.GONE);
         }
+
 
 
         onViewCreated();
@@ -199,4 +207,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void onViewCreated();
 
     public abstract void onActivityStart();
+
+    public boolean isCanSwipeToDismiss(){
+        return true;
+    }
 }

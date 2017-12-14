@@ -32,6 +32,11 @@ public class StartActivity extends BaseActivity {
     }
 
     @Override
+    public boolean isCanSwipeToDismiss() {
+        return false;
+    }
+
+    @Override
     public String getThisPageTitle() {
         return null;
     }

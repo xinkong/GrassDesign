@@ -84,6 +84,8 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'com.github.bumptech.glide:glide:4.3.1'
-    implementation 'com.grass:imagesel:1.0.1'
+    implementation 'com.grass:imagesel:1.0.4'
+    implementation 'com.grass.views:MyView:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+
 }

@@ -43,6 +43,11 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     }
 
     @Override
+    public boolean isCanSwipeToDismiss() {
+        return false;
+    }
+
+    @Override
     public int getLayoutID() {
         return R.layout.activity_main;
     }
@@ -52,7 +57,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     @Override
     public void onActivityStart() {
 
-//        mPresenter.getData("zhangsan","pwd");
+//        mPresenter.getData("zhangsan","pwd");717129012037
 //        mTextView.setOnClickListener(view -> uploadeImage());
 
         fragments = new ArrayList<>(4);
