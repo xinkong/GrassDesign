@@ -36,7 +36,7 @@ public class ProgressDialogManager {
     }
 
     public void showWait(Context context, String content) {
-        if (context != null && !((Activity) context).isDestroyed()) {
+        if (context != null && !((Activity) context).isDestroyed() &&  !((Activity) context).isFinishing()) {
             if (mDialog != null) {
                 mDialog = null;
             }

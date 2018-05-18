@@ -25,3 +25,6 @@ xinkongc
     http://android.lineten.net/layout.php
 
     https://github.com/open-android/Android
+
+    沉浸式
+    https://github.com/gyf-dev/ImmersionBar

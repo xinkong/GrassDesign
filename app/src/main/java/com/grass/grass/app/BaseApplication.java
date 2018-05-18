@@ -67,7 +67,7 @@ public class BaseApplication extends Application {
 
         initLogger();
 
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
     }
 
     private void initSelPic() {

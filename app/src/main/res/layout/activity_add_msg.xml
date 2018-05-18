@@ -16,7 +16,7 @@
         android:padding="8dp"
         android:hint="请输入内容"
         android:gravity="top"
-        android:background="@drawable/rounded_white_line_black"
+        android:background="@drawable/rounded_t000_l333"
         android:minLines="6"/>
 
     <android.support.v7.widget.RecyclerView

@@ -3,6 +3,7 @@ package com.grass.grass.presenter;
 import com.grass.grass.base.CommonSubscriber;
 import com.grass.grass.base.RxPresenter;
 import com.grass.grass.contract.MainContract;
+import com.grass.grass.entity.MsgInfoEntity;
 import com.grass.grass.entity.UserEntity;
 import com.grass.grass.utils.RxUtil;
 import com.grass.grass.utils.http.HttpUrlManager;
@@ -11,10 +12,12 @@ import com.orhanobut.logger.Logger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import io.reactivex.functions.Function3;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -44,6 +47,13 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
                         mView.showContent(userEntity.toString());
                     }
                 }));
+//        BiFunction;
+//        Flowable.zip(mHttpUrlManager.login(name, pwd), mHttpUrlManager.getMsg(null), mHttpUrlManager.register("", "")
+//                , (a, b, c) -> {
+//                    return true;
+//                }
+//
+//        ).compose()
     }
 
     @Override
@@ -57,7 +67,7 @@ public class MainPresenter extends RxPresenter<MainContract.MainView> implements
                         MultipartBody.Part body = MultipartBody.Part.createFormData("file" + i, file.getName(), requestFile);
                         parts.add(body);
                     }
-                    return mHttpUrlManager.uploadFile(HttpUrlManager.BASEIMAGEUPLOADURL,parts);
+                    return mHttpUrlManager.uploadFile(HttpUrlManager.BASEIMAGEUPLOADURL, parts);
                 })
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.<String>handleResult())

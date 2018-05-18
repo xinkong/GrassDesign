@@ -2,6 +2,7 @@ package com.grass.grass.ui.login;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.grass.grass.presenter.login.LoginPresenter;
 import com.grass.grass.ui.MainActivity;
 import com.grass.grass.utils.AppUtils;
 import com.grass.views.MyPressView;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 
@@ -30,6 +32,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @BindView(R.id.register)
     TextView mRegister;
 
+
+
     @Override
     public String getThisPageTitle() {
         return "登录";
@@ -45,6 +49,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     public void onActivityStart() {
         mCommit.setOnClickListener(view -> commit());
         mRegister.setOnClickListener(view -> AppUtils.jump(mContext(), RegisterActivity.class));
+
     }
 
     private void commit() {
@@ -77,6 +82,11 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     public void loginSuccess() {
         startActivity(new Intent(mContext(), MainActivity.class));
         finish();
+    }
+
+    @Override
+    public void sendMessageOk() {
+        Log.i("tag","发送成功");
     }
 }
 

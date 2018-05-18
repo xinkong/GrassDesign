@@ -8,6 +8,13 @@ import com.grass.grass.contract.LoginContract;
 import com.grass.grass.entity.UserEntity;
 import com.grass.grass.utils.RxUtil;
 import com.grass.grass.utils.SharePrefsUtils;
+import com.grass.grass.utils.Tools;
+
+import java.security.MessageDigest;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
 
 import javax.inject.Inject;
 
@@ -39,4 +46,27 @@ public class LoginPresenter extends RxPresenter<LoginContract.LoginView> impleme
                 }));
 
     }
+
+    @Override
+    public void sendMessage(String phone, String token, String user_id) {
+
+        String url = "http://dev.xiaodongxing.com/api/v3/base/sendCode/?F=android&V=3.5.0&timestamp=1519796193742&sign=50a1341047a7703b80af418a317ab4a4";
+        Map<String,String> params = new HashMap<>();
+        params.put("token",token);
+        params.put("user_id",user_id);
+        addSubscribe(mHttpUrlManager.sendCode(url,params)
+                .compose(RxUtil.rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<Object>(mView,mContext,"正在发送...") {
+                    @Override
+                    public void onNext(Object userEntity) {
+                        super.onNext(userEntity);
+                        mView.sendMessageOk();
+                    }
+                }));
+
+
+    }
 }
+
+
+
